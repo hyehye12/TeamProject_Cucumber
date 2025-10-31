@@ -8,7 +8,7 @@ export const TestPage = () => {
         <NavLink to="/test">Test</NavLink>
         <NavLink to="Hemin">Hemin</NavLink>
         <NavLink to="Nara">Nara</NavLink>
-        <NavLink to="Joowon">Juwone</NavLink>
+        <NavLink to="Joowon">Joowon</NavLink>
       </nav>
       <hr />
       <Outlet /> {/* 자식 라우트가 여기로 렌더링 */}
