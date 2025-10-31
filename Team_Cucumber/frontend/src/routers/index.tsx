@@ -1,7 +1,6 @@
 // router.tsx
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import TestPage, { TestHome, PersonPage } from "../pages/TestPage";
-import LandingPage from "../pages/LandingPage";
+import { LandingPage, PersonPage, TestHome, TestPage } from "../pages";
 
 const router = createBrowserRouter([
   {
