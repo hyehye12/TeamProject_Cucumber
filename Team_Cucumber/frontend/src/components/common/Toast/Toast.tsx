@@ -5,6 +5,7 @@ import { TOAST_DEFAULT_DELAY } from "../../../constants";
 interface ToastProps {
   delay?: number;
   className?: string;
+  // TODO : 토스트의 위치, 토스트의 색상 등 적용 - 색상 변경은 토큰 적용 ?
 }
 
 export const Toast = ({
@@ -30,11 +31,10 @@ export const Toast = ({
 
     // 화면에 보이는 시간 설정
     const timer = setTimeout(() => {
-      clearToast(); // toast 초기화
-      setIsOpen(false); // Toast 닫기
+      handleClose();
     }, delay); // delay 초 후 닫기
 
-    // 
+    //
     return () => {
       clearTimeout(timer);
     };
