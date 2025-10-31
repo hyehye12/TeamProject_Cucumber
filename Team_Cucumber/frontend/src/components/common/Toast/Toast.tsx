@@ -21,17 +21,23 @@ export const Toast = ({
 
   // 클릭 시 즉시 닫힘
   const handleClose = () => {
-    setIsOpen(false);
+    clearToast(); // 초기화
+    setIsOpen(false); // toast 닫기
   };
 
   useEffect(() => {
     if (!isOpen) return;
 
     // 화면에 보이는 시간 설정
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       clearToast(); // toast 초기화
       setIsOpen(false); // Toast 닫기
     }, delay); // delay 초 후 닫기
+
+    // 
+    return () => {
+      clearTimeout(timer);
+    };
   }, [isOpen]);
 
   // isOpen이 false 이면 Toast가 보이지 않음
