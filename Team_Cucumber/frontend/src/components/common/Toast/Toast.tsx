@@ -19,6 +19,11 @@ export const Toast = ({
   // toast 객체의 값 구조 분해
   const { msg } = toast;
 
+  // 클릭 시 즉시 닫힘
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -38,7 +43,10 @@ export const Toast = ({
       {/* container */}
       <div className="px-10">
         {/* toast */}
-        <div className="px-4 py-2 bg-black text-white rounded-md">
+        <div
+          className="px-4 py-2 bg-black text-white rounded-md cursor-pointer"
+          onClick={handleClose}
+        >
           {/* 텍스트 부분 */}
           <p>{msg}</p>
         </div>
