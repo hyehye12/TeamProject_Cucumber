@@ -1,14 +1,21 @@
 // router.tsx
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { LandingPage, PersonPage, TestHome, TestPage } from "../pages";
+import {
+  LandingPage,
+  TestHeminPage,
+  TestJoowonPage,
+  TestNaraPage,
+  TestPage,
+} from "../pages";
 
 const router = createBrowserRouter([
   {
     path: "/test",
     element: <TestPage />,
     children: [
-      { index: true, element: <TestHome /> },
-      { path: ":name", element: <PersonPage /> },
+      { path: "Hemin", element: <TestHeminPage /> },
+      { path: "Joowon", element: <TestJoowonPage /> },
+      { path: "Nara", element: <TestNaraPage /> },
     ],
   },
   {
