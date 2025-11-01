@@ -1,9 +1,11 @@
 import { Outlet, NavLink, useParams } from "react-router-dom";
+import { Toast, useToast } from "../components";
+import { useEffect } from "react";
 
 // 부모 레이아웃 (여기에 Outlet 필수)
 export const TestPage = () => {
   return (
-    <main>
+    <main className="relative">
       <nav>
         <NavLink to="/test">Test</NavLink>
         <NavLink to="Hemin">Hemin</NavLink>
@@ -12,6 +14,7 @@ export const TestPage = () => {
       </nav>
       <hr />
       <Outlet /> {/* 자식 라우트가 여기로 렌더링 */}
+      <Toast />
     </main>
   );
 };
@@ -24,6 +27,14 @@ export const TestHome = () => {
 // 같은 파일 안에 PersonPage 정의
 export const PersonPage = () => {
   const { name } = useParams<{ name: "Hemin" | "Nara" | "Joowon" }>();
+
+  const msg = "안녕하세요";
+
+  const toast = useToast();
+
+  useEffect(() => {
+    toast({ msg });
+  }, [msg]);
 
   const PEOPLE = {
     Hemin: { title: "혜민" },
