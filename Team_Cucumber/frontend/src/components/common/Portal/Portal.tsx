@@ -7,7 +7,12 @@ interface PortalProps {
   className?: string;
 }
 
-export const Portal = ({ children, id, className }: PortalProps) => {
+export const Portal = ({
+  children,
+  id,
+  className: _className,
+}: PortalProps) => {
+  const className = ["w-[768px] relative", _className].join(" ");
   const portal = (
     <div id={`${id ? `${id}_` : ""}portal`} className={className}>
       {children}
