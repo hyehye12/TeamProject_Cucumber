@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { LandingPage, TestPage } from "../pages";
+import { LandingPage, ReportPage, TestPage } from "../pages";
 import { TestHeminPage, TestNaraPage, TestJoowonPage } from "../pages";
 
 export const AppRoutes = () => {
@@ -12,6 +12,8 @@ export const AppRoutes = () => {
           <Route path="Nara" element={<TestNaraPage />} />
           <Route path="Joowon" element={<TestJoowonPage />} />
         </Route>
+        <Route path="/reports" element={<ReportPage />}></Route>
+        <Route path="/reports/:path" element={<ReportPage />}></Route>
       </Routes>
     </BrowserRouter>
   );
