@@ -1,5 +1,5 @@
-import Button from "../../components/Button/Button";
-import Modal from "../../components/Modal/Modal";
+import Button from "../../components/common/Button/Button";
+import Modal from "../../components/common/Modal/Modal";
 import { useState } from "react";
 
 export const TestJoowonPage = ({}) => {
