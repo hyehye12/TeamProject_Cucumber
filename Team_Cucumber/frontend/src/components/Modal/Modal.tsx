@@ -3,7 +3,7 @@ interface ModalProps {
   onClose: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ region, onClose }) => {
+const Modal = ({ region, onClose }: ModalProps) => {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-10">
       <div className="bg-white rounded-2xl p-5">
