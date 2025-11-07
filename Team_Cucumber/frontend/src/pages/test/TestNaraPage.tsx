@@ -24,15 +24,6 @@ export const TestNaraPage = () => {
   return (
     <div>
       <Toast />
-      <div className="flex items-centers gap-2">
-        <Checkbox
-          id="id"
-          onChange={handleChange}
-          checked={isChecked}
-          className="text-2xl"
-        />
-        <label htmlFor="id">체크박스</label>
-      </div>
     </div>
   );
 };
