@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Portal, Toast, useToast } from "../../components";
+import { Portal, Textarea, Toast, useToast } from "../../components";
 
 export const TestNaraPage = () => {
   const msg = "안녕하세요";
@@ -18,6 +18,7 @@ export const TestNaraPage = () => {
       <Portal className="absolute bottom-4 w-full px-4">
         <Toast />
       </Portal>
+      <Textarea placeholder="안녕하세요." className="focus:outline-1" />
     </div>
   );
 };

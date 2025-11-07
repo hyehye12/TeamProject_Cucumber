@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useToastStore } from "../../../stores";
 import { TOAST_DEFAULT_DURATION } from "../../../constants";
+import { twMerge } from "tailwind-merge";
 
 interface ToastProps {
   duration?: number;
@@ -14,10 +15,10 @@ export const Toast = ({
   const { toast, isOpen, setIsOpen, clearToast } = useToastStore();
 
   // 적용 클래스에 따른 적용 요소가 달라져야 함 주의
-  const className = [
+  const className = twMerge(
     "px-4 py-2 bg-black text-white rounded-md cursor-pointer",
-    _className,
-  ].join(" ");
+    _className
+  );
 
   // toast 객체의 값 구조 분해
   const { msg } = toast;
