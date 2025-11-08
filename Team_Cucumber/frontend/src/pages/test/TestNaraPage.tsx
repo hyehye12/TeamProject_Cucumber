@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Checkbox, Toast, useToast } from "../../components";
+import { Toast, useToast } from "../../components";
 import { Textarea, Portal, Radio } from "../../components";
 
 export const TestNaraPage = () => {
