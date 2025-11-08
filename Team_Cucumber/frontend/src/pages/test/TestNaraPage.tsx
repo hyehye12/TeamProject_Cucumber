@@ -31,21 +31,26 @@ export const TestNaraPage = () => {
         <Toast />
       </Portal>
       <Textarea placeholder="안녕하세요." className="focus:outline-1" />
-      {radios.map((radio) => (
-        <div
-          className="flex items-center justify-between p-2 w-[200px]"
-          key={radio.value}
-        >
-          <label htmlFor={radio.value}>{radio.text}</label>
-          <Radio
-            name="test"
-            id={radio.value}
-            checked={radio.value === radioValue}
-            value={radio.value}
-            onChange={() => setRadioValue(radio.value)}
-          />
-        </div>
-      ))}
+      <div className="space-y-4 p-4">
+        {radios.map((radio) => (
+          <div
+            className="flex items-center justify-between p-2 w-[200px] border border-gray-200 rounded-lg"
+            key={radio.value}
+          >
+            <label htmlFor={radio.value}>{radio.text}</label>
+            <Radio
+              name="test"
+              id={radio.value}
+              checked={radio.value === radioValue}
+              value={radio.value}
+              onChange={() => setRadioValue(radio.value)}
+              className={
+                radio.value === radioValue ? "text-orange-400" : "text-gray-200"
+              }
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

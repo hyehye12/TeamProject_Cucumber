@@ -12,7 +12,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     ref
   ) => {
     const className = twMerge(
-      checked ? "text-orange-400" : "",
+      checked ? "text-orange-400" : "text-gray-200",
       "text-xl",
       _className
     );
