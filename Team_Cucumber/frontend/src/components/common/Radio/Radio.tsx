@@ -8,12 +8,21 @@ type RadioProps = ReactInputProps & {};
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   (
-    { checked, id, children, onChange, className: _className, ...props },
+    {
+      checked,
+      id,
+      children,
+      onChange,
+      className: _className,
+      disabled,
+      ...props
+    },
     ref
   ) => {
     const className = twMerge(
       checked ? "text-orange-400" : "text-gray-200",
       "text-xl",
+      disabled ? "opacity-50" : " cursor-pointer",
       _className
     );
 
@@ -26,6 +35,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
           ref={ref}
           id={id}
           onChange={onChange}
+          disabled={disabled}
         />
         <Icon name={checked ? "radioOn" : "radioOff"} className={className} />
       </label>

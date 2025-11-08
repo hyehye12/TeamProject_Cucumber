@@ -61,6 +61,7 @@ export const TestNaraPage = () => {
               className={
                 radio.value === radioValue ? "text-orange-400" : "text-gray-200"
               }
+              disabled
             />
           </div>
         ))}
