@@ -34,9 +34,12 @@ import {
   IoPerson as user, // 유저 아이콘
   IoSquareOutline as boxOutline, // 빈 박스
   IoCheckbox as checkBoxFill, // 체크 박스
-  IoRadioButtonOn as radioOn, // 라디온 온
-  IoRadioButtonOff as radioOff, // 라디오 오프
 } from "react-icons/io5";
+
+import {
+  FaRegCircle as radioOff,
+  FaCircleDot as radioOn,
+} from "react-icons/fa6";
 
 import {
   PiShareNetwork as share, // 공유
