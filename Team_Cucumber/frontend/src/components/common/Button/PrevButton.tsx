@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { Icon } from "../Icon";
 import Button from "./Button";
-import type { ButtonHTMLAttributes, MouseEvent } from "react";
+import type { MouseEvent } from "react";
 import { twMerge } from "tailwind-merge";
-
-type ReactButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+import type { ReactButtonProps } from "./types";
 
 type PrevButtonProps = ReactButtonProps & {};
 

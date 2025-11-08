@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import {
+  CloseButton,
   Portal,
   PrevButton,
   Textarea,
@@ -22,12 +23,26 @@ export const TestNaraPage = () => {
     window.alert("안녕");
   };
 
+  const handleClose = () => {
+    console.log("닫기");
+  };
+
   return (
     <div>
       <div className="flex ">
         <div className="p-4 border">
           <p>이전 페이지 이동 버튼</p>
-          <PrevButton onClick={handlePrevClick} />
+          <PrevButton
+            onClick={handlePrevClick}
+            // disabled
+          />
+        </div>
+        <div className="p-4 border">
+          <p>닫기 버튼</p>
+          <CloseButton
+            onClose={handleClose}
+            // disabled
+          />
         </div>
       </div>
       {/*  TODO : 토스트의 위치는 Portal에 의해서 변경할 것  */}
