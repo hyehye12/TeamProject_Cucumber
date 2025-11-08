@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import {
   CloseButton,
+  MoreButton,
   Portal,
   PrevButton,
   Textarea,
@@ -42,6 +43,12 @@ export const TestNaraPage = () => {
           <CloseButton
             onClose={handleClose}
             // disabled
+          />
+        </div>
+        <div className="p-4 border">
+          <p>더보기 버튼</p>
+          <MoreButton
+          // disabled
           />
         </div>
       </div>
