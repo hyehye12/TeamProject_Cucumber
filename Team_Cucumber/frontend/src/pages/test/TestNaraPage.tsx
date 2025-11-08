@@ -47,6 +47,7 @@ export const TestNaraPage = () => {
       </div>
       <div className="space-y-4 p-4">
         {radios.map((radio) => (
+          // TODO 이 부분을 wrapper로 만들 수 있을 듯 함
           <div
             className="flex items-center justify-between p-2 w-[200px] border border-gray-200 rounded-lg"
             key={radio.value}

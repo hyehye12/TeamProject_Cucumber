@@ -22,7 +22,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     const className = twMerge(
       checked ? "text-orange-400" : "text-gray-200",
       "text-xl",
-      disabled ? "opacity-50" : " cursor-pointer",
+      disabled ? "opacity-50 cursor-not-allowed" : " cursor-pointer",
       _className
     );
 

@@ -12,7 +12,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     const className = twMerge(
       "flex items-center",
       checked ? "text-orange-400" : "text-gray-400",
-      disabled ? "opacity-50cursor-not-allowed" : "cursor-pointer",
+      disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
       _className
     );
     return (
@@ -27,6 +27,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           className="sr-only"
           ref={ref}
           aria-hidden={true}
+          disabled={disabled}
         />
 
         <Icon
