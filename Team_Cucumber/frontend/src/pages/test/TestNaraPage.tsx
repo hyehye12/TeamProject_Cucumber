@@ -42,7 +42,12 @@ export const TestNaraPage = () => {
       </Portal>
       <Textarea placeholder="안녕하세요." className="focus:outline-1" />
       <div className="flex gap-2">
-        <Checkbox id="test" checked={isChecked} onChange={handleChange} />
+        <Checkbox
+          id="test"
+          checked={isChecked}
+          onChange={handleChange}
+          // disabled
+        />
         <label htmlFor="test">테스트</label>
       </div>
       <div className="space-y-4 p-4">
@@ -62,7 +67,7 @@ export const TestNaraPage = () => {
               className={
                 radio.value === radioValue ? "text-orange-400" : "text-gray-200"
               }
-              disabled
+              // disabled
             />
           </div>
         ))}
