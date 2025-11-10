@@ -9,6 +9,7 @@ export const TestPage = () => {
     Hemin: { title: "혜민" },
     Nara: { title: "나라" },
     Joowon: { title: "주원" },
+    icons: { title: "아이콘" },
   } as const;
 
   const person = name ? PEOPLE[name] : { title: "존재하지 않는 사람입니다." };
@@ -22,6 +23,7 @@ export const TestPage = () => {
           <NavLink to="Hemin">Hemin</NavLink>
           <NavLink to="Nara">Nara</NavLink>
           <NavLink to="Joowon">Joowon</NavLink>
+          <NavLink to="icons">Icons</NavLink>
         </nav>
       </header>
       <hr />

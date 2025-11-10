@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { LandingPage, ReportPage, TestPage } from "../pages";
+import { IconsPage, LandingPage, ReportPage, TestPage } from "../pages";
 import { TestHeminPage, TestNaraPage, TestJoowonPage } from "../pages";
 
 export const AppRoutes = () => {
@@ -11,6 +11,7 @@ export const AppRoutes = () => {
           <Route path="Hemin" element={<TestHeminPage />} />
           <Route path="Nara" element={<TestNaraPage />} />
           <Route path="Joowon" element={<TestJoowonPage />} />
+          <Route path="icons" element={<IconsPage />} />
         </Route>
         <Route path="/reports" element={<ReportPage />}></Route>
         <Route path="/reports/:path" element={<ReportPage />}></Route>

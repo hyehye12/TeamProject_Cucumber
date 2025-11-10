@@ -1,5 +1,6 @@
 import type { DetailedHTMLProps, FC, HTMLAttributes } from "react";
 import { icons } from "./icons";
+import { twMerge } from "tailwind-merge";
 
 type ReactSpanProps = DetailedHTMLProps<
   HTMLAttributes<HTMLSpanElement>,
@@ -16,7 +17,7 @@ export const Icon: FC<IconProps> = ({
   className: _className,
   ...props
 }) => {
-  const className = ["", _className].join(" ");
+  const className = twMerge("", _className);
 
   const Comp = icons[name];
 
