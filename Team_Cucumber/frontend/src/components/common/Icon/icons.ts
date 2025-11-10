@@ -20,6 +20,7 @@ import {
   LuEllipsisVertical as verticalDots, // 더보기
   LuX as close, // 닫기, X
   LuCheck as check, // 체크
+  LuTrash2 as trash,
 } from "react-icons/lu";
 
 import {
@@ -34,11 +35,13 @@ import {
   IoPerson as user, // 유저 아이콘
   IoSquareOutline as boxOutline, // 빈 박스
   IoCheckbox as checkBoxFill, // 체크 박스
+  IoSettingsOutline as setting, // 설정
 } from "react-icons/io5";
 
 import {
   FaRegCircle as radioOff,
   FaCircleDot as radioOn,
+  FaUserGroup as group,
 } from "react-icons/fa6";
 
 import {
@@ -98,4 +101,7 @@ export const icons = {
   checkBoxFill,
   radioOn,
   radioOff,
+  trash,
+  setting,
+  group,
 };
