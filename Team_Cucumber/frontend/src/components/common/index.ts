@@ -3,6 +3,7 @@ export * from "./Textarea";
 export * from "./Toast";
 export * from "./ToggleButton";
 export * from "./Button";
+export * from "./Modal";
 export * from "./Portal";
 export * from "./Radio";
 export * from "./Checkbox";
