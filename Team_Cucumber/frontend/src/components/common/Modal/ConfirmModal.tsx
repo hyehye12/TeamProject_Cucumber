@@ -3,8 +3,8 @@ import { useEffect, type ReactNode } from "react";
 interface ConfirmModalProps {
   onClose: () => void;
   onConfirm?: () => void;
-  title: string;
-  children: ReactNode; // 유연성 위해서
+  title?: string;
+  children?: ReactNode; // 유연성 위해서
   confirmButtonText: string;
   cancelButtonText: string;
 }
