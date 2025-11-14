@@ -1,8 +1,24 @@
 @tailwindcss / preflight;
 @tailwind utilities;
+@import "tailwindcss";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+}
+
+/* 높이 100% 적용하기 위한 코드 */
+html {
+  height: 100%;
+}
+
+body {
+  max-width: 768px;
+  margin: auto;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
 }
