@@ -1,15 +1,17 @@
 import Button from "../../components/common/Button/Button";
-import Modal from "../../components/common/Modal/Modal";
+import ConfirmModal from "../../components/common/Modal/ConfirmModal";
+import NeighborhoodAuthModal from "../../components/common/Modal/NeighborhoodAuthModal";
 import { useState } from "react";
 
 export const TestJoowonPage = ({}) => {
   const [showModal, setShowModal] = useState(false);
   const regionName = "일원본";
 
-  const handleModalClose = () => {
-    setShowModal(false);
+  const handleConfirm = () => {
+    console.log("확인 버튼");
   };
 
+  // 버튼 컴포넌트(확인버튼) 클릭 시 모달 열림
   const handleModalOpen = () => {
     setShowModal(true);
   };
@@ -21,7 +23,13 @@ export const TestJoowonPage = ({}) => {
       </Button>
 
       {/* 모달 닫기 */}
-      {showModal && <Modal region={regionName} onClose={handleModalClose} />}
+      {showModal && (
+        <NeighborhoodAuthModal
+          onClose={() => setShowModal(false)}
+          region={regionName}
+          onConfirm={handleConfirm}
+        />
+      )}
     </div>
   );
 };
