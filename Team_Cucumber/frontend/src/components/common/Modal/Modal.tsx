@@ -2,7 +2,9 @@ interface ModalProps {
   region: string;
   onClose: () => void;
 }
-
+// 스크롤 방지기능 추가해야
+// ConfirmModal로 변경
+//
 const Modal = ({ region, onClose }: ModalProps) => {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-10">
