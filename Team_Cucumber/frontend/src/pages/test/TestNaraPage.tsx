@@ -1,5 +1,12 @@
 import { useEffect, useState, type ChangeEvent } from "react";
-import { Checkbox, Header, Icon, Toast, useToast } from "../../components";
+import {
+  Checkbox,
+  Header,
+  Icon,
+  Tabs,
+  Toast,
+  useToast,
+} from "../../components";
 import { Textarea, Portal, Radio } from "../../components";
 import Button from "../../components/common/Button/Button";
 
@@ -126,6 +133,16 @@ export const TestNaraPage = () => {
           )}
         </Header.Right>
       </Header>
+
+      <Tabs.Root>
+        <Tabs.List>
+          <Tabs.Trigger>트리거</Tabs.Trigger>
+          <Tabs.Trigger>안녕</Tabs.Trigger>
+          <Tabs.Trigger>하세요</Tabs.Trigger>
+          <Tabs.Indicator>인디케이터</Tabs.Indicator>
+        </Tabs.List>
+        <Tabs.Content>내용</Tabs.Content>
+      </Tabs.Root>
 
       {/*  TODO : 토스트의 위치는 Portal에 의해서 변경할 것  */}
       <Portal className="absolute bottom-4 w-full px-4">
