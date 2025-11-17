@@ -46,102 +46,105 @@ export const TestNaraPage = () => {
 
   return (
     <div>
-      {/* 헤더 1 뒤로가기 버튼만 있는 경우 */}
-      <Header>
-        <Header.Left>
-          <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
-            <Icon name="left" className="text-2xl" />
-          </Button>
-        </Header.Left>
-      </Header>
-      {/* 헤더 2 뒤로가기 버튼 + 타이틀이 있는 경우 */}
-      <Header>
-        <Header.Left>
-          <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
-            <Icon name="left" className="text-2xl" />
-          </Button>
-          <Header.Title>내 물건 팔기</Header.Title>
-        </Header.Left>
-      </Header>
-
-      {/* 헤더 3 뒤로가기 + 타이틀 + right button */}
-      <Header>
-        <Header.Left>
-          <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
-            <Icon name="left" className="text-2xl" />
-          </Button>
-          <Header.Title>내 물건 팔기</Header.Title>
-        </Header.Left>
-        <Header.Right>
-          <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
-            <Icon name="trash" className="text-xl" />
-          </Button>
-          <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
-            <Icon name="setting" className="text-xl" />
-          </Button>
-        </Header.Right>
-      </Header>
-
-      {/* 헤더 4 뒤로가기 + 아이콘 + right button */}
-      <div className="bg-black">
-        <Header className="">
+      <div>
+        {/* 헤더 1 뒤로가기 버튼만 있는 경우 */}
+        <Header>
           <Header.Left>
-            <Button className="bg-transparent rounded-full active:bg-gray-200 hover:bg-transparent">
+            <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
               <Icon name="left" className="text-2xl" />
             </Button>
-            <Button className="bg-transparentrounded-full active:bg-gray-200 hover:bg-transparent">
-              <Icon name="homeOutline" className="text-2xl" />
+          </Header.Left>
+        </Header>
+        {/* 헤더 2 뒤로가기 버튼 + 타이틀이 있는 경우 */}
+        <Header>
+          <Header.Left>
+            <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
+              <Icon name="left" className="text-2xl" />
             </Button>
+            <Header.Title>내 물건 팔기</Header.Title>
+          </Header.Left>
+        </Header>
+
+        {/* 헤더 3 뒤로가기 + 타이틀 + right button */}
+        <Header>
+          <Header.Left>
+            <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
+              <Icon name="left" className="text-2xl" />
+            </Button>
+            <Header.Title>내 물건 팔기</Header.Title>
           </Header.Left>
           <Header.Right>
-            <Button className="bg-transparent rounded-full active:bg-gray-200 hover:bg-transparent">
-              <Icon name="share" className="text-2xl" />
+            <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
+              <Icon name="trash" className="text-xl" />
             </Button>
-            <Button className="bg-transparent rounded-full active:bg-gray-200 hover:bg-transparent">
-              <Icon name="verticalDots" className="text-2xl" />
+            <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
+              <Icon name="setting" className="text-xl" />
             </Button>
+          </Header.Right>
+        </Header>
+
+        {/* 헤더 4 뒤로가기 + 아이콘 + right button */}
+        <div className="bg-black">
+          <Header className="">
+            <Header.Left>
+              <Button className="bg-transparent rounded-full active:bg-gray-200 hover:bg-transparent">
+                <Icon name="left" className="text-2xl" />
+              </Button>
+              <Button className="bg-transparentrounded-full active:bg-gray-200 hover:bg-transparent">
+                <Icon name="homeOutline" className="text-2xl" />
+              </Button>
+            </Header.Left>
+            <Header.Right>
+              <Button className="bg-transparent rounded-full active:bg-gray-200 hover:bg-transparent">
+                <Icon name="share" className="text-2xl" />
+              </Button>
+              <Button className="bg-transparent rounded-full active:bg-gray-200 hover:bg-transparent">
+                <Icon name="verticalDots" className="text-2xl" />
+              </Button>
+            </Header.Right>
+          </Header>
+        </div>
+
+        {/* 헤더 5 뒤로가기 + right button + 검색 창*/}
+        <Header className="">
+          <Header.Left>
+            {isSearchOn ? (
+              <input placeholder="검색" className="bg-gray-200 w-full p-2" />
+            ) : (
+              <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
+                <Icon name="left" className="text-2xl" />
+              </Button>
+            )}
+          </Header.Left>
+          <Header.Right>
+            {isSearchOn ? (
+              <Button
+                className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent  font-normal"
+                onClick={() => setIsSearchOn(!isSearchOn)}
+              >
+                취소
+              </Button>
+            ) : (
+              <Button
+                className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent"
+                onClick={() => setIsSearchOn(!isSearchOn)}
+              >
+                <Icon name="search" className="text-2xl" />
+              </Button>
+            )}
           </Header.Right>
         </Header>
       </div>
 
-      {/* 헤더 5 뒤로가기 + right button + 검색 창*/}
-      <Header className="">
-        <Header.Left>
-          {isSearchOn ? (
-            <input placeholder="검색" className="bg-gray-200 w-full p-2" />
-          ) : (
-            <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
-              <Icon name="left" className="text-2xl" />
-            </Button>
-          )}
-        </Header.Left>
-        <Header.Right>
-          {isSearchOn ? (
-            <Button
-              className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent  font-normal"
-              onClick={() => setIsSearchOn(!isSearchOn)}
-            >
-              취소
-            </Button>
-          ) : (
-            <Button
-              className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent"
-              onClick={() => setIsSearchOn(!isSearchOn)}
-            >
-              <Icon name="search" className="text-2xl" />
-            </Button>
-          )}
-        </Header.Right>
-      </Header>
-
-      <Tabs.Root>
+      <Tabs.Root defaultValue="trigger">
         <Tabs.List>
-          <Tabs.Trigger>트리거</Tabs.Trigger>
-          <Tabs.Trigger>안녕</Tabs.Trigger>
-          <Tabs.Trigger>하세요</Tabs.Trigger>
-          <Tabs.Indicator>인디케이터</Tabs.Indicator>
+          <Tabs.Trigger value="trigger">트리거</Tabs.Trigger>
+          <Tabs.Trigger value="hello">안녕</Tabs.Trigger>
+          <Tabs.Trigger value="hihi">하세요</Tabs.Trigger>
         </Tabs.List>
-        <Tabs.Content>내용</Tabs.Content>
+        <Tabs.Content value="trigger">트리거입니다.</Tabs.Content>
+        <Tabs.Content value="hello">안녕하실까요?</Tabs.Content>
+        <Tabs.Content value="hihi">히히히히히힣</Tabs.Content>
       </Tabs.Root>
 
       {/*  TODO : 토스트의 위치는 Portal에 의해서 변경할 것  */}
