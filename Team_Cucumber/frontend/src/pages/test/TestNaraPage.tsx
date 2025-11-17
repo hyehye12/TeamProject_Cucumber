@@ -136,7 +136,7 @@ export const TestNaraPage = () => {
         </Header>
       </div>
 
-      <Tabs.Root defaultValue="trigger">
+      <Tabs.Root defaultValue="trigger" variant="line">
         <Tabs.List>
           <Tabs.Trigger value="trigger">트리거</Tabs.Trigger>
           <Tabs.Trigger value="hello">안녕</Tabs.Trigger>

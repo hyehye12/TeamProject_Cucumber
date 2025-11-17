@@ -6,7 +6,7 @@ import {
 } from "react";
 import { twMerge } from "tailwind-merge";
 import { TabContextProvider, useTabContext } from "./context";
-import type { TabContextType } from "./types";
+import type { TabContextType, TabsVariant } from "./types";
 
 type TabsProps = {
   children: ReactNode;
@@ -22,12 +22,14 @@ export const Tabs = ({ children, className: _className }: TabsProps) => {
 type TabsRootProps = {
   children: ReactNode;
   defaultValue: string;
+  variant?: TabsVariant;
   className?: string;
 };
 
 export const TabsRoot = ({
   children,
   defaultValue,
+  variant = "line",
   className: _className,
 }: TabsRootProps) => {
   const className = twMerge("", _className);
@@ -37,6 +39,7 @@ export const TabsRoot = ({
   const value: TabContextType = {
     selection,
     setSelection,
+    variant,
   };
 
   useEffect(() => {
@@ -59,7 +62,13 @@ export const TabsList = ({
   children,
   className: _className,
 }: TabsListProps) => {
-  const className = twMerge("w-full flex justify-around shadow-lg", _className);
+  const { variant } = useTabContext();
+
+  const className = twMerge(
+    "w-full flex justify-around p-1",
+    variant === "enclosed" && "bg-gray-100 rounded",
+    _className
+  );
 
   return <nav className={className}>{children}</nav>;
 };
@@ -80,15 +89,33 @@ export const TabsTrigger = ({
   onClick,
   ...props
 }: TabsTriggerProps) => {
-  const { selection, setSelection } = useTabContext();
+  const { selection, setSelection, variant } = useTabContext();
 
   const isSelected = selection === value;
 
   const className = twMerge(
     "cursor-pointer p-4 flex-1",
-    isSelected
-      ? "border-black font-bold border-b-3"
-      : "border-b-1 border-gray-200",
+    variant === "line"
+      ? isSelected
+        ? "font-bold border-b-3 border-black"
+        : "border-b-1 border-gray-200"
+      : variant === "subtle"
+      ? isSelected
+        ? "font-bold bg-gray-100 rounded"
+        : ""
+      : variant === "enclosed"
+      ? isSelected
+        ? "bg-white rounded border border-gray-200"
+        : ""
+      : variant === "outline"
+      ? isSelected
+        ? "font-semibold border border-gray-300 border-b-0 rounded-t"
+        : "border-b-1 border-gray-300"
+      : variant === "plain"
+      ? isSelected
+        ? "font-semibold"
+        : ""
+      : "",
     _className
   );
 
