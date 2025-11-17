@@ -20,6 +20,8 @@ import {
   LuEllipsisVertical as verticalDots, // 더보기
   LuX as close, // 닫기, X
   LuCheck as check, // 체크
+  LuTrash2 as trash, // 쓰레기 통
+  LuSettings as setting, // 톱니바퀴
 } from "react-icons/lu";
 
 import {
@@ -98,4 +100,6 @@ export const icons = {
   checkBoxFill,
   radioOn,
   radioOff,
+  trash,
+  setting,
 };
