@@ -51,7 +51,7 @@ const ConfirmButton = ({ children, onClick }: ModalButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className="flex-1 bg-orange-500 rounded-md font-bold p-3 w-full text-white hover:bg-orange-400 cursor-pointer"
+      className="flex-1 bg-orange-500 rounded-md font-bold p-3 w-full text-white hover:bg-orange-600 cursor-pointer"
     >
       {children}
     </button>
