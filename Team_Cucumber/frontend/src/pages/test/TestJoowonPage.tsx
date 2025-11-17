@@ -15,7 +15,7 @@ export const TestJoowonPage = ({}) => {
       <Button className="w-1/2" onClick={() => setShowModal(true)}>
         확인
       </Button>
-      {/* <Modal open={showModal}>
+      <Modal open={showModal}>
         <Modal.Header title="모달 title" />
         <Modal.Body>모달 body</Modal.Body>
         <Modal.Footer>
@@ -26,13 +26,13 @@ export const TestJoowonPage = ({}) => {
             확인
           </Modal.ConfirmButton>
         </Modal.Footer>
-      </Modal> */}
-      <NeighborhoodAuthModal
+      </Modal>
+      {/* <NeighborhoodAuthModal
         open={showModal}
         onClose={() => setShowModal(false)}
         region="역삼"
         onConfirm={handleConfirm}
-      />
+      /> */}
     </div>
   );
 };

@@ -6,13 +6,14 @@ import type {
   ModalButtonProps,
 } from "./Modal.types";
 import useScrollLock from "../../../hooks/useScrollLock";
+import { createPortal } from "react-dom";
 
 const ModalRoot = ({ open, children }: ModalRootProps) => {
   useScrollLock(open);
 
   if (!open) return null;
 
-  return (
+  const modalContent = (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-10">
       <div
         className="bg-white rounded-2xl p-5"
@@ -22,6 +23,8 @@ const ModalRoot = ({ open, children }: ModalRootProps) => {
       </div>
     </div>
   );
+  // createPortal(children, domNode, key?)
+  return createPortal(modalContent, document.body);
 };
 
 const Header = ({ title }: HeaderProps) => {
