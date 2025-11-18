@@ -10,7 +10,7 @@ export const TestHeminPage = () => {
     {
       id: "1",
       title:
-        "안녕하세요 재미도 없고 감동도 없고 노력도 없는 물건 팝니다.집가고싶다",
+        "안askdjflk lkajdcvlkn ajkdnfcvlaj kdcnvdlk andlkfjclkdsjadlkfjxcljsklafdjxklsjdfxlksjdfkj",
       price: "450,000원",
       location: "성수동",
       timeAgo: "5분 전",
@@ -115,7 +115,7 @@ export const TestHeminPage = () => {
             </ProductCard.Image>
 
             {/* 아래쪽 텍스트 영역 */}
-            <div className="flex flex-col flex-1 justify-between">
+            <div className="flex flex-col flex-1 min-h-0 justify-between">
               <div>
                 <ProductCard.Title className="text-sm text-gray-900">
                   {item.title}
