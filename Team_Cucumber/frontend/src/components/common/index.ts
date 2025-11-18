@@ -10,3 +10,4 @@ export * from "./Checkbox";
 export * from "./PageTransition";
 export * from "./Header";
 export * from "./Tabs";
+export * from "./Button";

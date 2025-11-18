@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { IconsPage, LandingPage, TestPage } from "../pages";
+import { IconsPage, LandingPage, ReportsPage, TestPage } from "../pages";
 import { TestHeminPage, TestNaraPage, TestJoowonPage } from "../pages";
 import { PageTransition } from "../components/common/PageTransition/PageTransition";
+import { ReportsMain } from "../components";
 
 export const AppRoutes = () => {
   return (
@@ -15,6 +16,11 @@ export const AppRoutes = () => {
               <Route path="Nara" element={<TestNaraPage />} />
               <Route path="Joowon" element={<TestJoowonPage />} />
               <Route path="icons" element={<IconsPage />} />
+            </Route>
+            <Route path="/reports" element={<ReportsPage />}>
+              <Route index element={<ReportsMain />} />
+              <Route path=":category" element={<ReportsMain />} />
+              <Route path=":category/:detail" element={<ReportsMain />} />
             </Route>
           </Routes>
         )}
