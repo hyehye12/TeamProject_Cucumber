@@ -87,8 +87,7 @@ export const TestHeminPage = () => {
                   // TODO: 여기서 메뉴 열기
                 }}
               >
-                <span className="text-xl leading-none">⋮</span>
-                {/* Icon 컴포넌트 쓰고 싶으면 여기다가 <Icon name="moreVertical" ... /> */}
+                <Icon name="verticalDots" />
               </button>
             </div>
           </ProductCard>
