@@ -38,7 +38,7 @@ export const PageTransition = ({
 
   const nodeRef = getNodeRef(location.key);
 
-  const className = ["min-h-[50vh] will-change-transform", _className].join(
+  const className = ["min-h-screen will-change-transform", _className].join(
     " "
   );
 
