@@ -56,7 +56,7 @@ export const ProductCardTitle = ({
   className: _className,
   ...rest
 }: ProductCardTitleProps) => {
-  const className = twMerge("clamp-2-text", _className);
+  const className = twMerge("line-clamp-2", _className);
 
   return (
     <p className={className} {...rest}>

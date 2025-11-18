@@ -9,8 +9,7 @@ export const TestHeminPage = () => {
   const mockItems = [
     {
       id: "1",
-      title:
-        "안askdjflk lkajdcvlkn ajkdnfcvlaj kdcnvdlk andlkfjclkdsjadlkfjxcljsklafdjxklsjdfxlksjdfkj",
+      title: "",
       price: "450,000원",
       location: "성수동",
       timeAgo: "5분 전",
@@ -46,11 +45,7 @@ export const TestHeminPage = () => {
           >
             {/* 왼쪽 썸네일 */}
             <ProductCard.Image className="w-24 h-24 bg-gray-100">
-              <img
-                src={item.imageUrl}
-                alt={item.title}
-                className="h-full w-full object-cover"
-              />
+              <img src={item.imageUrl} className="h-full w-full object-cover" />
             </ProductCard.Image>
 
             {/* ▶ 오른쪽 영역 전체: 텍스트 + 더보기 버튼 */}
@@ -115,7 +110,7 @@ export const TestHeminPage = () => {
             </ProductCard.Image>
 
             {/* 아래쪽 텍스트 영역 */}
-            <div className="flex flex-col flex-1 min-h-0 justify-between">
+            <div className="flex flex-col flex-1 justify-between">
               <div>
                 <ProductCard.Title className="text-sm text-gray-900">
                   {item.title}
