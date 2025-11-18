@@ -9,7 +9,8 @@ export const TestHeminPage = () => {
   const mockItems = [
     {
       id: "1",
-      title: "아이패드 에어 4세대 팝니다",
+      title:
+        "안녕하세요 재미도 없고 감동도 없고 노력도 없는 물건 팝니다.집가고싶다",
       price: "450,000원",
       location: "성수동",
       timeAgo: "5분 전",
@@ -55,7 +56,7 @@ export const TestHeminPage = () => {
             {/* ▶ 오른쪽 영역 전체: 텍스트 + 더보기 버튼 */}
             <div className="flex flex-1">
               {/* 텍스트 영역 */}
-              <div className="flex flex-col flex-1 justify-between">
+              <div className="flex flex-col flex-1  min-w-0 justify-between">
                 <div className="space-y-1">
                   <ProductCard.Title className="text-sm text-gray-900">
                     {item.title}
@@ -95,7 +96,7 @@ export const TestHeminPage = () => {
       </div>
       <br />
       {/*판매물품, 관심있을만한 상품 */}
-      <div>
+      <div className="px-5">
         {mockItems.map((item) => (
           <ProductCard
             key={item.id}
@@ -115,7 +116,7 @@ export const TestHeminPage = () => {
 
             {/* 아래쪽 텍스트 영역 */}
             <div className="flex flex-col flex-1 justify-between">
-              <div className="space-y-1">
+              <div>
                 <ProductCard.Title className="text-sm text-gray-900">
                   {item.title}
                 </ProductCard.Title>

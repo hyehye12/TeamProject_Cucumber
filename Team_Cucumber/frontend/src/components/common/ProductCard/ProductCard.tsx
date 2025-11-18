@@ -35,7 +35,7 @@ export const ProductCardImage = ({
   className: _className,
   ...rest
 }: ProductCardImageProps) => {
-  const className = twMerge("relative overflow-hidden rounded-xl", _className);
+  const className = twMerge("rounded-xl", _className);
   return (
     <div className={className} {...rest}>
       {children}
@@ -56,7 +56,7 @@ export const ProductCardTitle = ({
   className: _className,
   ...rest
 }: ProductCardTitleProps) => {
-  const className = twMerge("line-clamp-2", _className);
+  const className = twMerge("clamp-2-text", _className);
 
   return (
     <p className={className} {...rest}>
