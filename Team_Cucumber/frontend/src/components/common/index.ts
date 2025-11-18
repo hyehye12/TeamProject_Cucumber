@@ -7,3 +7,4 @@ export * from "./Portal";
 export * from "./Radio";
 export * from "./Checkbox";
 export * from "./PageTransition";
+export * from "./ProductCard";
