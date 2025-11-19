@@ -9,11 +9,11 @@ export const TestHeminPage = () => {
   const mockItems = [
     {
       id: "1",
-      title: "",
+      title: "안녕하세요.물건사라",
       price: "450,000원",
       location: "성수동",
       timeAgo: "5분 전",
-      imageUrl: "/images/sample-ipad.jpg",
+      imageUrl: "../../../public/cafe.png",
       chats: 3,
       likes: 10,
     },
