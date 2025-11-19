@@ -1,4 +1,5 @@
 import type {
+  OverlayProps,
   ModalRootProps,
   HeaderProps,
   BodyProps,
@@ -7,24 +8,35 @@ import type {
 } from "./Modal.types";
 import useScrollLock from "../../../hooks/useScrollLock";
 import { createPortal } from "react-dom";
+import type React from "react";
 
 const ModalRoot = ({ open, children }: ModalRootProps) => {
   useScrollLock(open);
-
   if (!open) return null;
+  // createPortal(children, domNode, key?)
+  return createPortal(
+    <div className="fixed inset-0 z-50">{children}</div>,
+    document.body
+  );
+};
 
-  const modalContent = (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-10">
+const Overlay = ({ onClick }: OverlayProps) => {
+  return (
+    <div className="fixed inset-0 bg-black/40 z-40" onClick={onClick}></div>
+  );
+};
+
+const Content = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center z-50">
       <div
-        className="bg-white rounded-2xl p-5"
+        className="bg-white rounded-2xl p-5 shadow-lg w-[50%] max-w-md"
         onClick={(e) => e.stopPropagation()}
       >
         {children}
       </div>
     </div>
   );
-  // createPortal(children, domNode, key?)
-  return createPortal(modalContent, document.body);
 };
 
 const Header = ({ title }: HeaderProps) => {
@@ -36,7 +48,7 @@ const Body = ({ children }: BodyProps) => {
 };
 
 const Footer = ({ children }: FooterProps) => {
-  return <div className="flex gap-3 mt-4">{children}</div>;
+  return <div className="flex gap-3 mt-4 justify-end">{children}</div>;
 };
 
 const CancelButton = ({ children, onClick }: ModalButtonProps) => {
@@ -63,6 +75,8 @@ const ConfirmButton = ({ children, onClick }: ModalButtonProps) => {
 
 // Compound Component Pattern
 const Modal = Object.assign(ModalRoot, {
+  Overlay,
+  Content,
   Header,
   Body,
   Footer,
