@@ -5,6 +5,7 @@ import type {
   ReportsContextType,
   ReportsListItemType,
   ReportsPathType,
+  ReportText,
 } from "../types";
 import { Outlet, useLocation } from "react-router-dom";
 import { reportsLists, reportsMap } from "../data";
@@ -24,6 +25,9 @@ export const ReportsPage = () => {
     category: undefined,
     detail: undefined,
   });
+  const [reportText, setReportText] = useState<ReportText | undefined>(
+    undefined
+  );
 
   // 전체 목록
   const lists = Object.values(reportsLists).flat();
@@ -62,6 +66,8 @@ export const ReportsPage = () => {
     setIsReported,
     list,
     content,
+    reportText,
+    setReportText,
   };
 
   return (

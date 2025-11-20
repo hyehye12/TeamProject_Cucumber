@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { IconsPage, LandingPage, ReportsPage, TestPage } from "../pages";
 import { TestHeminPage, TestNaraPage, TestJoowonPage } from "../pages";
 import { PageTransition } from "../components/common/PageTransition/PageTransition";
-import { ReportsMain, ReportsProfessional } from "../components";
+import { ReportsMain, ReportsProfessional, ReportsProxy } from "../components";
 
 export const AppRoutes = () => {
   return (
@@ -21,6 +21,7 @@ export const AppRoutes = () => {
               <Route index element={<ReportsMain />} />
               <Route path=":category" element={<ReportsMain />} />
               <Route path="professional" element={<ReportsProfessional />} />
+              <Route path="proxy" element={<ReportsProxy />} />
               <Route path=":category/:detail" element={<ReportsMain />} />
             </Route>
           </Routes>

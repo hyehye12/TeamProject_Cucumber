@@ -2,6 +2,11 @@ import type { ButtonHTMLAttributes } from "react";
 
 export type ReactButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
+export interface ReportText {
+  type: string;
+  text: string;
+}
+
 export type ReportsContextType = {
   keyword: string;
   setKeyword: (keyword: string) => void;
@@ -14,6 +19,8 @@ export type ReportsContextType = {
   setIsReported: (isReported: boolean) => void;
   list: ReportsListItemType[];
   content?: any;
+  reportText?: ReportText;
+  setReportText?: (reportText: ReportText) => void;
 };
 
 export interface ReportsPathType {
