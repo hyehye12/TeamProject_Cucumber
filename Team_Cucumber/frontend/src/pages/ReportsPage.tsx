@@ -47,8 +47,8 @@ export const ReportsPage = () => {
 
   const content = reportsMap[path.category as ReportsCategoryType];
 
-  const handleBlock = () => {
-    setIsBlockUser(true);
+  const handleReport = () => {
+    setIsReported(true);
   };
 
   useEffect(() => {
@@ -72,7 +72,7 @@ export const ReportsPage = () => {
     content,
     reportText,
     setReportText,
-    handleBlock,
+    handleReport,
   };
 
   return (

@@ -1,7 +1,10 @@
 import { Button } from "../../common";
 import { BlockUserChecker } from "../BlockUserChecker";
+import { useReportsContext } from "../context";
 
 export const ReportsProfessional = () => {
+  const { handleReport } = useReportsContext();
+
   return (
     <div className="p-8 flex flex-col h-full">
       <header>
@@ -33,7 +36,9 @@ export const ReportsProfessional = () => {
         <BlockUserChecker />
       </main>
       <footer>
-        <Button className="w-full">신고하기</Button>
+        <Button className="w-full" onClick={handleReport}>
+          신고하기
+        </Button>
       </footer>
     </div>
   );

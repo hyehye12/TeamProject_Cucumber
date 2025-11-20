@@ -4,7 +4,7 @@ import { BlockUserChecker } from "../BlockUserChecker";
 import { useReportsContext } from "../context";
 
 export const ReportsProxy = () => {
-  const { handleBlock, reportText, setReportText } = useReportsContext();
+  const { handleReport, reportText, setReportText } = useReportsContext();
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
@@ -45,7 +45,7 @@ export const ReportsProxy = () => {
         <BlockUserChecker />
       </main>
       <footer>
-        <Button onClick={handleBlock} className="w-full">
+        <Button onClick={handleReport} className="w-full">
           신고하기
         </Button>
       </footer>

@@ -17,7 +17,7 @@ export type ReportsContextType = {
   setIsBlockUser: (isBlockUser: boolean) => void;
   isReported: boolean;
   setIsReported: (isReported: boolean) => void;
-  handleBlock: () => void;
+  handleReport: () => void;
   list: ReportsListItemType[];
   content?: any;
   reportText?: ReportText;

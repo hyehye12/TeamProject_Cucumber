@@ -5,6 +5,7 @@ import { PageTransition } from "../components/common/PageTransition/PageTransiti
 import {
   ReportsLivingAnimals,
   ReportsMain,
+  ReportsMedicalProducts,
   ReportsProfessional,
   ReportsProxy,
 } from "../components";
@@ -31,6 +32,10 @@ export const AppRoutes = () => {
               <Route
                 path=":category/living-animals"
                 element={<ReportsLivingAnimals />}
+              />
+              <Route
+                path=":category/medical-products"
+                element={<ReportsMedicalProducts />}
               />
             </Route>
           </Routes>
