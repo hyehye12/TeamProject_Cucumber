@@ -19,6 +19,7 @@ export interface ReportsListItemType {
   path: string;
   text: string;
   desc?: string;
+  type?: ReportsCategoryType;
 }
 
 export type ReportsCategoryType =
