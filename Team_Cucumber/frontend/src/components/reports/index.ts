@@ -9,3 +9,4 @@ export * from "./ReportsDetail";
 export * from "./BlockUserChecker";
 export * from "./ReportsFooter";
 export * from "./ReportsList";
+export * from "./mains";

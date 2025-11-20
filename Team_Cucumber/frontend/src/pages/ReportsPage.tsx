@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ReportsFooter, ReportsHeader, ReportsProvider } from "../components";
+import { ReportsHeader, ReportsProvider } from "../components";
 import type {
   ReportsCategoryType,
   ReportsContextType,
@@ -69,7 +69,6 @@ export const ReportsPage = () => {
       <article className="flex flex-col h-screen">
         <ReportsHeader />
         <Outlet />
-        <ReportsFooter />
       </article>
     </ReportsProvider>
   );
