@@ -13,7 +13,7 @@ export const ReportsCancelButton = ({
   className: _className,
   ...props
 }: ReportsCancelButtonProps) => {
-  const { setIsSearchOn } = useReportsContext();
+  const { setIsSearchOn, setKeyword } = useReportsContext();
 
   const className = twMerge(
     "font-normal text-black bg-transparent hover:bg-transparent hover:font-semibold",
@@ -22,6 +22,7 @@ export const ReportsCancelButton = ({
 
   const handleClick = () => {
     setIsSearchOn(false);
+    setKeyword("");
   };
 
   return (
