@@ -4,23 +4,15 @@ import { BlockUserChecker } from "../BlockUserChecker";
 import { useReportsContext } from "../context";
 
 export const ReportsProxy = () => {
-  const { setIsBlockUser, isBlockUser, reportText, setReportText } =
-    useReportsContext();
-
-  const handleBlock = () => {
-    setIsBlockUser(!isBlockUser);
-  };
+  const { handleBlock, reportText, setReportText } = useReportsContext();
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    if (!setReportText) return;
-
     const text = e.target.value;
 
     setReportText({ type: "proxy", text });
   };
 
   useEffect(() => {
-    if (!setReportText) return;
     setReportText({ type: "proxy", text: "" });
   }, []);
 

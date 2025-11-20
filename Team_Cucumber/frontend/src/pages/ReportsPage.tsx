@@ -47,6 +47,10 @@ export const ReportsPage = () => {
 
   const content = reportsMap[path.category as ReportsCategoryType];
 
+  const handleBlock = () => {
+    setIsBlockUser(true);
+  };
+
   useEffect(() => {
     const [_, __, category, detail] = pathname.split("/");
 
@@ -68,6 +72,7 @@ export const ReportsPage = () => {
     content,
     reportText,
     setReportText,
+    handleBlock,
   };
 
   return (
