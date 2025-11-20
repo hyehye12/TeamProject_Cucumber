@@ -1,26 +1,11 @@
 import { Link } from "react-router-dom";
 import { reportsLists } from "../../data";
-import type { ReportsCategoryType, ReportsListItemType } from "../../types";
 import { useReportsContext } from "./context";
 import { Icon } from "../common";
 
 export const ReportsList = () => {
-  const { path, keyword } = useReportsContext();
-  // 전체 목록
-  const lists = Object.values(reportsLists).flat();
+  const { keyword, list } = useReportsContext();
 
-  // 목록
-  const list: ReportsListItemType[] = path.detail
-    ? []
-    : path.category
-    ? keyword
-      ? reportsLists[path.category as ReportsCategoryType].filter((l) =>
-          l.text.includes(keyword)
-        )
-      : reportsLists[path.category as ReportsCategoryType]
-    : keyword
-    ? lists.filter((l) => l.text.includes(keyword))
-    : reportsLists["reports"];
   return (
     <div>
       {list.length > 0 && !keyword && (

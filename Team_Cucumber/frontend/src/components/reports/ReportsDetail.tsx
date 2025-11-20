@@ -1,16 +1,12 @@
 import { useEffect, useRef } from "react";
 import { useReportsContext } from "./context";
-import type { ReportsCategoryType } from "../../types";
-import { reportsMap } from "../../data";
 import { BlockUserChecker } from "./BlockUserChecker";
 
 interface ReportsDetail {}
 
 export const ReportsDetail = ({}: ReportsDetail) => {
   const descRef = useRef<HTMLDivElement>(null);
-  const { path } = useReportsContext();
-
-  const content = reportsMap[path.category as ReportsCategoryType];
+  const { path, content } = useReportsContext();
 
   useEffect(() => {
     if (!descRef.current) return;

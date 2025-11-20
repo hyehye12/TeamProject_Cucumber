@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { ReportsFooter, ReportsHeader, ReportsProvider } from "../components";
-import type { ReportsContextType, ReportsPathType } from "../types";
+import type {
+  ReportsCategoryType,
+  ReportsContextType,
+  ReportsListItemType,
+  ReportsPathType,
+} from "../types";
 import { Outlet, useLocation } from "react-router-dom";
+import { reportsLists, reportsMap } from "../data";
 
 export const ReportsPage = () => {
   // 주소
@@ -18,7 +24,24 @@ export const ReportsPage = () => {
     category: undefined,
     detail: undefined,
   });
-  ``;
+
+  // 전체 목록
+  const lists = Object.values(reportsLists).flat();
+
+  // 목록
+  const list: ReportsListItemType[] = path.detail
+    ? []
+    : path.category
+    ? keyword
+      ? reportsLists[path.category as ReportsCategoryType].filter((l) =>
+          l.text.includes(keyword)
+        )
+      : reportsLists[path.category as ReportsCategoryType]
+    : keyword
+    ? lists.filter((l) => l.text.includes(keyword))
+    : reportsLists["reports"];
+
+  const content = reportsMap[path.category as ReportsCategoryType];
 
   useEffect(() => {
     const [_, __, category, detail] = pathname.split("/");
@@ -37,6 +60,8 @@ export const ReportsPage = () => {
     setIsBlockUser,
     isReported,
     setIsReported,
+    list,
+    content,
   };
 
   return (

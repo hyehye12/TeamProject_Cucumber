@@ -5,20 +5,11 @@ import {
   useReportsContext,
   ReportsCancelButton,
 } from "../../components";
-import { reportsLists } from "../../data";
-import type { ReportsCategoryType, ReportsListItemType } from "../../types";
 
 export const ReportsHeader = () => {
   const { isSearchOn } = useReportsContext();
 
-  const { path } = useReportsContext();
-
-  // 목록
-  const list: ReportsListItemType[] = path.detail
-    ? []
-    : path.category
-    ? reportsLists[path.category as ReportsCategoryType]
-    : reportsLists["reports"];
+  const { list } = useReportsContext();
 
   return (
     <header className="flex justify-between items-center gap-4">

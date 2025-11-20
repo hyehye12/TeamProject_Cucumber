@@ -1,8 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import { Button } from "../common";
 import { useReportsContext } from "./context";
-import { reportsLists, reportsMap } from "../../data";
-import type { ReportsCategoryType, ReportsListItemType } from "../../types";
 
 interface ReportsFooter {
   className?: string;
@@ -11,26 +9,11 @@ interface ReportsFooter {
 export const ReportsFooter = ({ className: _className }: ReportsFooter) => {
   const className = twMerge("flex justify-center p-8", _className);
 
-  const { path, setIsReported } = useReportsContext();
-
-  console.log(path.category);
-
-  const content = reportsMap[path.category as ReportsCategoryType];
-
-  console.log(content);
+  const { setIsReported, content } = useReportsContext();
 
   const handleReport = () => {
     setIsReported(true);
   };
-
-  // 목록
-  const list: ReportsListItemType[] = path.detail
-    ? []
-    : path.category
-    ? reportsLists[path.category as ReportsCategoryType]
-    : reportsLists["reports"];
-
-  if (list.length > 0) return null;
 
   return (
     <footer className={className}>

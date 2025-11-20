@@ -12,6 +12,8 @@ export type ReportsContextType = {
   setIsBlockUser: (isBlockUser: boolean) => void;
   isReported: boolean;
   setIsReported: (isReported: boolean) => void;
+  list: ReportsListItemType[];
+  content?: any;
 };
 
 export interface ReportsPathType {
