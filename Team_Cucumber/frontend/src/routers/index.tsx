@@ -8,6 +8,7 @@ import {
   ReportsMedicalProducts,
   ReportsProfessional,
   ReportsProxy,
+  ReportsTrademarkInfringement,
 } from "../components";
 
 export const AppRoutes = () => {
@@ -36,6 +37,10 @@ export const AppRoutes = () => {
               <Route
                 path=":category/medical-products"
                 element={<ReportsMedicalProducts />}
+              />
+              <Route
+                path=":category/trademark-infringement"
+                element={<ReportsTrademarkInfringement />}
               />
             </Route>
           </Routes>
