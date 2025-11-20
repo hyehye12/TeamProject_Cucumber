@@ -8,6 +8,10 @@ export type ReportsContextType = {
   isSearchOn: boolean;
   setIsSearchOn: (isSearchOn: boolean) => void;
   path: ReportsPathType;
+  isBlockUser: boolean;
+  setIsBlockUser: (isBlockUser: boolean) => void;
+  isReported: boolean;
+  setIsReported: (isReported: boolean) => void;
 };
 
 export interface ReportsPathType {
@@ -20,10 +24,11 @@ export interface ReportsListItemType {
   text: string;
   desc?: string;
   type?: ReportsCategoryType;
+  isBlockUser?: boolean;
+  canReport?: boolean;
 }
 
 export type ReportsCategoryType =
-  | "reports"
   | "bans"
   | "professional"
   | "frauds"

@@ -5,3 +5,7 @@ export * from "./ReportsSearchInput";
 export * from "./context";
 export * from "./ReportsCancelButton";
 export * from "./ReportsMain";
+export * from "./ReportsDetail";
+export * from "./BlockUserChecker";
+export * from "./ReportsFooter";
+export * from "./ReportsList";

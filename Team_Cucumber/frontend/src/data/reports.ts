@@ -271,16 +271,24 @@ const users: ReportsListItemType[] = [
 // 전문 판매업자
 export const professional = {
   title: "전문판매업자 같아요",
-  desc: `- 동일/유사한 제품을 단기간에 많이 판매하는 경우
-  - 동일 제품을 다양한 사이즈나 색상으로 판매하는 경우 \n - 판매사이트, 카톡 채널, 네이버 밴드 등 영리를 위한 홍보하는 경우  
-- 기타 영리적 목적이 확인되는 경우  
-
-전문판매업자 사유로 신고할 수 있습니다.  
-
-당근 팀에게 신고해주시면 신고해주신 내용을 바탕으로 전문판매업자 처리가 진행됩니다.  
-
-자세한 내용은 '전문 판매업자 기준이 뭔가요?' 내용을 확인해주세요.`,
+  desc: `
+  <div>
+    <ul style="list-style-type: disc; margin-left:32px;">
+      <li style="margin: 16px 0;">동일/유사한 제품을 단기간에 많이 판매하는 경우</li>
+      <li style="margin: 16px 0;">동일 제품을 다양한 사이즈나 색상으로 판매하는 경우</li> 
+      <li style="margin: 16px 0;">판매사이트, 카톡 채널, 네이버 밴드 등 영리를 위한 홍보하는 경우</li>  
+      <li style="margin: 16px 0;">기타 영리적 목적이 확인되는 경우</li>  
+    </ul>
+    <div style="display:flex; flex-direction:column; gap: 20px;">
+      <p>전문판매업자 사유로 신고할 수 있습니다.</p>
+      <p>당근 팀에게 신고해주시면 신고해주신 내용을 바탕으로 전문판매업자 처리가 진행됩니다.</p>
+      <p>자세한 내용은 '전문 판매업자 기준이 뭔가요?' 내용을 확인해주세요.</p>
+    </div>
+  </div>
+`,
   type: "professional",
+  isBlockUser: true,
+  canReport: true,
 };
 
 export const proxy = {
@@ -295,13 +303,24 @@ export const proxy = {
   type: "proxy",
 };
 
-export const reportsLists: Record<ReportsCategoryType, ReportsListItemType[]> =
-  {
-    reports,
-    bans,
-    professional: [],
-    frauds,
-    proxy: [],
-    inappropriates,
-    users,
-  };
+export const reportsLists: Record<
+  ReportsCategoryType | "reports",
+  ReportsListItemType[]
+> = {
+  reports,
+  bans,
+  professional: [],
+  frauds,
+  proxy: [],
+  inappropriates,
+  users,
+};
+
+export const reportsMap: Record<ReportsCategoryType, any> = {
+  bans: {},
+  professional,
+  frauds: {},
+  proxy,
+  inappropriates: {},
+  users: {},
+};

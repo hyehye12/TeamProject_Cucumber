@@ -7,7 +7,7 @@ import { ReportsMain } from "../components";
 export const AppRoutes = () => {
   return (
     <BrowserRouter>
-      <PageTransition animation="slide-left" timeout={700} className="p-6">
+      <PageTransition animation="slide-left" timeout={700}>
         {(fixedLocation) => (
           <Routes location={fixedLocation}>
             <Route path="/" element={<LandingPage />} />
