@@ -5,7 +5,7 @@ const ReportsProhibitedFood = () => {
   return (
     <ReportsLayout>
       <ReportsLayout.Header>
-        <ReportsMainTitle title="저작권 침해 물품" />
+        <ReportsMainTitle title="거래 금지 식품" />
       </ReportsLayout.Header>
       <ReportsLayout.Main>
         <BlockUserChecker />
