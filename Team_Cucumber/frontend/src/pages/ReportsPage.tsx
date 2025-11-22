@@ -8,7 +8,7 @@ import type {
   ReportText,
 } from "../types";
 import { Outlet, useLocation } from "react-router-dom";
-import { reportsLists, reportsMap } from "../data";
+import { reportsLists, reportsMap, userOthers } from "../data";
 
 export const ReportsPage = () => {
   // 주소
@@ -33,17 +33,18 @@ export const ReportsPage = () => {
   const lists = Object.values(reportsLists).flat();
 
   // 목록
-  const list: ReportsListItemType[] = path.detail
-    ? []
-    : path.category
-    ? keyword
-      ? reportsLists[path.category as ReportsCategoryType].filter((l) =>
-          l.text.includes(keyword)
-        )
-      : reportsLists[path.category as ReportsCategoryType]
-    : keyword
-    ? lists.filter((l) => l.text.includes(keyword))
-    : reportsLists["reports"];
+  const list: ReportsListItemType[] =
+    path.detail === "others" && path.category === "users"
+      ? userOthers
+      : path.category
+      ? keyword
+        ? reportsLists[path.category as ReportsCategoryType].filter((l) =>
+            l.text.includes(keyword)
+          )
+        : reportsLists[path.category as ReportsCategoryType]
+      : keyword
+      ? lists.filter((l) => l.text.includes(keyword))
+      : reportsLists["reports"];
 
   const content = reportsMap[path.category as ReportsCategoryType];
 

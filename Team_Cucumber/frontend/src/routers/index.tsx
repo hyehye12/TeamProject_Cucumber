@@ -36,6 +36,10 @@ import ReportsDispute from "../components/reports/mains/ReportsDispute";
 import ReportsAbuse from "../components/reports/mains/ReportsAbuse";
 import ReportsUnwantedChat from "../components/reports/mains/ReportsUnwantedChat";
 import ReportsSexualBehavior from "../components/reports/mains/ReportsSexualBehavior";
+import ReportsProfileImage from "../components/reports/mains/ReportsProfileImage";
+import ReportsNickname from "../components/reports/mains/ReportsNickname";
+import ReportsPolitics from "../components/reports/mains/ReportsPolitics";
+import ReportsUnder14 from "../components/reports/mains/ReportsUnder14";
 
 export const AppRoutes = () => {
   return (
@@ -120,7 +124,7 @@ export const AppRoutes = () => {
                 path=":category/hazardous-products"
                 element={<ReportsHazardousProducts />}
               />
-              <Route path=":category/others" element={<ReportsOthers />} />
+              <Route path="bans/others" element={<ReportsOthers />} />
               <Route
                 path=":category/fraud-seller-no-delivery"
                 element={<ReportsFraudSeller />}
@@ -169,6 +173,16 @@ export const AppRoutes = () => {
                 path=":category/inappropriate-sexual-behavior"
                 element={<ReportsSexualBehavior />}
               />
+              <Route path="users/others">
+                <Route index element={<ReportsMain />} />
+                <Route path="profile-image" element={<ReportsProfileImage />} />
+                <Route path="nickname" element={<ReportsNickname />} />
+                <Route
+                  path="politics-religions"
+                  element={<ReportsPolitics />}
+                />
+                <Route path="under-14" element={<ReportsUnder14 />} />
+              </Route>
             </Route>
           </Routes>
         )}

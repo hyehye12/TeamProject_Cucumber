@@ -255,7 +255,7 @@ const users: ReportsListItemType[] = [
     type: "users",
   },
   {
-    path: "other-inappropriate-behavior",
+    path: "others",
     text: "기타 부적절한 행위가 있어요",
     desc: "",
     type: "users",
@@ -263,6 +263,33 @@ const users: ReportsListItemType[] = [
   {
     path: "proxy-payment-or-trade",
     text: "대리 결제/구매/판매 행위를 해요",
+    desc: "",
+    type: "users",
+  },
+];
+
+export const userOthers: ReportsListItemType[] = [
+  {
+    path: "profile-image",
+    text: "프로필 사진 신고",
+    desc: "",
+    type: "users",
+  },
+  {
+    path: "nickname",
+    text: "사용자 닉네임 신고",
+    desc: "",
+    type: "users",
+  },
+  {
+    path: "politics-religions",
+    text: "정치/종교 대화를 시도해요",
+    desc: "",
+    type: "users",
+  },
+  {
+    path: "under-14",
+    text: "만 14세 미만 사용자예요",
     desc: "",
     type: "users",
   },

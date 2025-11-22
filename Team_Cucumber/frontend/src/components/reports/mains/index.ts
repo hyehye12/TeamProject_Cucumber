@@ -27,3 +27,7 @@ export * from "./ReportsSexualBehavior";
 export * from "./ReportsSuggestReportItem";
 export * from "./ReportsUnwantedChat";
 export * from "./ReportsUnusableProduct";
+export * from "./ReportsProfileImage";
+export * from "./ReportsNickname";
+export * from "./ReportsPolitics";
+export * from "./ReportsUnder14";
