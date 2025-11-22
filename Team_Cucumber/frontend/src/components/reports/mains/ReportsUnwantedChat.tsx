@@ -1,20 +1,58 @@
+import { useEffect, type ChangeEvent } from "react";
 import { ReportsLayout } from "../../../layout";
-import { BlockUserChecker, ReportsButton, ReportsMainTitle } from "../..";
+import {
+  ReportsButton,
+  ReportsMainTitle,
+  Textarea,
+  useReportsContext,
+} from "../..";
 
 const ReportsUnwantedChat = () => {
+  const { handleReport, reportText, setReportText } = useReportsContext();
+
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const text = e.target.value;
+
+    setReportText({ type: "users", text });
+  };
+
+  useEffect(() => {
+    setReportText({ type: "users", text: "" });
+  }, []);
+
   return (
     <ReportsLayout>
       <ReportsLayout.Header>
-        <ReportsMainTitle title="" />
+        <ReportsMainTitle title="연애 목적의 원하지 않는 대화를 시도해요" />
       </ReportsLayout.Header>
       <ReportsLayout.Main>
-        <BlockUserChecker />
+        <p>
+          중고거래 게시글에서 거래와 관련 없는 채팅을 받으면 상대방을 신고할 수
+          있어요. 동네 생활을 이용할 때도, 원하지 않는 채팅을 받아 불쾌하다면
+          신고할 수 있어요.
+        </p>
+        <div>
+          <Textarea
+            placeholder="신고내용을 입력해주세요.(최대 300자)"
+            className="border border-gray-200 mb-0"
+            value={reportText?.text}
+            onChange={handleChange}
+          />
+          <p className="text-right text-gray-400">{`${reportText?.text.length}/300`}</p>
+        </div>
+        <p className="text-gray-500">
+          이 항목으로 신고하면 서로의 게시글이 보이지 않고, 서로 더 이상 채팅을
+          보낼 수 없어요.
+        </p>
+        <p className="text-gray-400">{`('나의 당근 > 설정 > 차단 사용자 관리'에서 취소할 수 있습니다.)`}</p>
       </ReportsLayout.Main>
       <ReportsLayout.Footer>
-        <ReportsButton />
+        <ReportsButton onClick={handleReport} />
       </ReportsLayout.Footer>
     </ReportsLayout>
   );
 };
 
 export default ReportsUnwantedChat;
+
+
