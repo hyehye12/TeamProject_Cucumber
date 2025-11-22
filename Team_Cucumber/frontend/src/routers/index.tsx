@@ -24,6 +24,19 @@ import ReportsProhibitedTickets from "../components/reports/mains/ReportsProhibi
 import ReportsFakeFreeGiveaway from "../components/reports/mains/ReportsFakeFreeGiveaway";
 import ReportsHazardousProducts from "../components/reports/mains/ReportsHazardousProducts";
 import ReportsOthers from "../components/reports/mains/ReportsOthers";
+import ReportsFraudSeller from "../components/reports/mains/ReportsFraudSeller";
+import ReportsFraudBuyer from "../components/reports/mains/ReportsFraudBuyer";
+import ReportsExternalTrade from "../components/reports/mains/ReportsExternalTrade";
+import ReportsUnusableProduct from "../components/reports/mains/ReportsUnusableProduct";
+import ReportsDuplicatePost from "../components/reports/mains/ReportsDuplicatePost";
+import ReportsResell from "../components/reports/mains/ReportsResell";
+import ReportsMoneyRequest from "../components/reports/mains/ReportsMoneyRequest";
+import ReportsSuggestReportItem from "../components/reports/mains/ReportsSuggestReportItem";
+import ReportsDispute from "../components/reports/mains/ReportsDispute";
+import ReportsAbuse from "../components/reports/mains/ReportsAbuse";
+import ReportsUnwantedChat from "../components/reports/mains/ReportsUnwantedChat";
+import ReportsSexualBehavior from "../components/reports/mains/ReportsSexualBehavior";
+import ReportsOtherInappropriate from "../components/reports/mains/ReportsOtherInappropriate";
 
 export const AppRoutes = () => {
   return (
@@ -109,6 +122,59 @@ export const AppRoutes = () => {
                 element={<ReportsHazardousProducts />}
               />
               <Route path=":category/others" element={<ReportsOthers />} />
+              <Route
+                path=":category/fraud-seller-no-delivery"
+                element={<ReportsFraudSeller />}
+              />
+              <Route
+                path=":category/fraud-buyer-no-payment"
+                element={<ReportsFraudBuyer />}
+              />
+              <Route
+                path=":category/fraud-external-channel"
+                element={<ReportsExternalTrade />}
+              />
+              <Route
+                path=":category/unusable-product"
+                element={<ReportsUnusableProduct />}
+              />
+              <Route
+                path=":category/duplicate-post"
+                element={<ReportsDuplicatePost />}
+              />
+              <Route
+                path=":category/resell-at-higher-price"
+                element={<ReportsResell />}
+              />
+              <Route
+                path=":category/free-giveaway-or-money-request"
+                element={<ReportsMoneyRequest />}
+              />
+              <Route
+                path=":category/suggest-report-item"
+                element={<ReportsSuggestReportItem />}
+              />
+              <Route path=":category/rude-user" element={<ReportsOthers />} />
+              <Route
+                path=":category/dispute-during-transaction"
+                element={<ReportsDispute />}
+              />
+              <Route
+                path=":category/abuse-or-hate-speech"
+                element={<ReportsAbuse />}
+              />
+              <Route
+                path=":category/unwanted-romantic-chat"
+                element={<ReportsUnwantedChat />}
+              />
+              <Route
+                path=":category/inappropriate-sexual-behavior"
+                element={<ReportsSexualBehavior />}
+              />
+              <Route
+                path=":category/other-inappropriate-behavior"
+                element={<ReportsOtherInappropriate />}
+              />
             </Route>
           </Routes>
         )}
