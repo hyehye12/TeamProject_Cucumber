@@ -10,6 +10,7 @@ import {
   ReportsProxy,
   ReportsTrademarkInfringement,
 } from "../components";
+import { ReportsCopyright } from "../components/reports/mains/ReportsCopyright";
 
 export const AppRoutes = () => {
   return (
@@ -26,7 +27,7 @@ export const AppRoutes = () => {
             </Route>
             <Route path="/reports" element={<ReportsPage />}>
               <Route index element={<ReportsMain />} />
-              <Route path=":category" element={<ReportsMain />} />
+              <Route path=":category" element={<ReportsMain />}></Route>
               <Route path="professional" element={<ReportsProfessional />} />
               <Route path="proxy" element={<ReportsProxy />} />
               <Route path=":category/:detail" element={<ReportsMain />} />
@@ -41,6 +42,10 @@ export const AppRoutes = () => {
               <Route
                 path=":category/trademark-infringement"
                 element={<ReportsTrademarkInfringement />}
+              />
+              <Route
+                path=":category/copyright-infringement"
+                element={<ReportsCopyright />}
               />
             </Route>
           </Routes>
