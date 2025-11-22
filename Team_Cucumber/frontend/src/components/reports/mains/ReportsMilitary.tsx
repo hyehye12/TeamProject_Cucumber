@@ -5,7 +5,7 @@ const ReportsMilitary = () => {
   return (
     <ReportsLayout>
       <ReportsLayout.Header>
-        <ReportsMainTitle title="저작권 침해 물품" />
+        <ReportsMainTitle title="군·경찰용품 / 제복류" />
       </ReportsLayout.Header>
       <ReportsLayout.Main>
         <BlockUserChecker />
