@@ -36,7 +36,6 @@ import ReportsDispute from "../components/reports/mains/ReportsDispute";
 import ReportsAbuse from "../components/reports/mains/ReportsAbuse";
 import ReportsUnwantedChat from "../components/reports/mains/ReportsUnwantedChat";
 import ReportsSexualBehavior from "../components/reports/mains/ReportsSexualBehavior";
-import ReportsOtherInappropriate from "../components/reports/mains/ReportsOtherInappropriate";
 
 export const AppRoutes = () => {
   return (
@@ -169,10 +168,6 @@ export const AppRoutes = () => {
               <Route
                 path=":category/inappropriate-sexual-behavior"
                 element={<ReportsSexualBehavior />}
-              />
-              <Route
-                path=":category/other-inappropriate-behavior"
-                element={<ReportsOtherInappropriate />}
               />
             </Route>
           </Routes>

@@ -22,7 +22,6 @@ export * from "./ReportsExternalTrade";
 export * from "./ReportsFraudBuyer";
 export * from "./ReportsFraudSeller";
 export * from "./ReportsMoneyRequest";
-export * from "./ReportsOtherInappropriate";
 export * from "./ReportsResell";
 export * from "./ReportsSexualBehavior";
 export * from "./ReportsSuggestReportItem";
