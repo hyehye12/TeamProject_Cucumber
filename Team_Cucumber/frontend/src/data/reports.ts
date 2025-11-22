@@ -231,7 +231,7 @@ const users: ReportsListItemType[] = [
     type: "users",
   },
   {
-    path: "suspected-fraud",
+    path: "../frauds",
     text: "사기인 것 같아요",
     desc: "",
     type: "users",

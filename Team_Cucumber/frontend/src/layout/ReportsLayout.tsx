@@ -62,7 +62,7 @@ const ReportsFooter = ({
   className: _className,
   ...props
 }: ReportsFooter) => {
-  const className = twMerge("pb-8", _className);
+  const className = twMerge("py-8", _className);
   return (
     <footer className={className} {...props}>
       {children}

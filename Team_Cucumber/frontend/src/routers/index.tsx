@@ -154,7 +154,6 @@ export const AppRoutes = () => {
                 path=":category/suggest-report-item"
                 element={<ReportsSuggestReportItem />}
               />
-              <Route path=":category/rude-user" element={<ReportsOthers />} />
               <Route
                 path=":category/dispute-during-transaction"
                 element={<ReportsDispute />}
