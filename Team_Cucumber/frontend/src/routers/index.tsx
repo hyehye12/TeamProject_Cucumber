@@ -47,6 +47,55 @@ export const AppRoutes = () => {
                 path=":category/copyright-infringement"
                 element={<ReportsCopyright />}
               />
+              <Route
+                path=":category/youth-restricted-drugs"
+                element={<ReportsCopyright />}
+              />
+              <Route
+                path=":category/youth-restricted-items"
+                element={<ReportsCopyright />}
+              />
+              <Route
+                path=":category/health-supplement-guideline"
+                element={<ReportsCopyright />}
+              />
+              <Route
+                path=":category/custom-made-products"
+                element={<ReportsCopyright />}
+              />
+              <Route
+                path=":category/prohibited-food"
+                element={<ReportsCopyright />}
+              />
+              <Route
+                path=":category/prohibited-cosmetics"
+                element={<ReportsCopyright />}
+              />
+              <Route
+                path=":category/dangerous-goods"
+                element={<ReportsCopyright />}
+              />
+              <Route
+                path=":category/hazardous-materials"
+                element={<ReportsCopyright />}
+              />
+              <Route
+                path=":category/military-police-uniforms"
+                element={<ReportsCopyright />}
+              />
+              <Route
+                path=":category/prohibited-tickets"
+                element={<ReportsCopyright />}
+              />
+              <Route
+                path=":category/fake-free-giveaway"
+                element={<ReportsCopyright />}
+              />
+              <Route
+                path=":category/hazardous-products"
+                element={<ReportsCopyright />}
+              />
+              <Route path=":category/others" element={<ReportsCopyright />} />
             </Route>
           </Routes>
         )}
