@@ -5,7 +5,7 @@ const ReportsFakeFreeGiveaway = () => {
   return (
     <ReportsLayout>
       <ReportsLayout.Header>
-        <ReportsMainTitle title="저작권 침해 물품" />
+        <ReportsMainTitle title="허위 무료 나눔" />
       </ReportsLayout.Header>
       <ReportsLayout.Main>
         <BlockUserChecker />
