@@ -2,10 +2,12 @@ import { ReportsLayout } from "../../../layout";
 import { BlockUserChecker, ReportsButton, ReportsMainTitle } from "../..";
 
 const ReportsDangerousGoods = () => {
+
+  
   return (
     <ReportsLayout>
       <ReportsLayout.Header>
-        <ReportsMainTitle title="저작권 침해 물품" />
+        <ReportsMainTitle title="위험한 물건" />
       </ReportsLayout.Header>
       <ReportsLayout.Main>
         <BlockUserChecker />
