@@ -5,7 +5,7 @@ const ReportsNickname = () => {
   return (
     <ReportsLayout>
       <ReportsLayout.Header>
-        <ReportsMainTitle title="" />
+        <ReportsMainTitle title="사용자 닉네임 신고" />
       </ReportsLayout.Header>
       <ReportsLayout.Main>
         <BlockUserChecker />
