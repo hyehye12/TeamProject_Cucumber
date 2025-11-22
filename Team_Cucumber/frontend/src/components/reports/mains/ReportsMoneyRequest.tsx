@@ -5,7 +5,7 @@ const ReportsMoneyRequest = () => {
   return (
     <ReportsLayout>
       <ReportsLayout.Header>
-        <ReportsMainTitle title="" />
+        <ReportsMainTitle title="무료나눔 및 금전 요구 글" />
       </ReportsLayout.Header>
       <ReportsLayout.Main>
         <BlockUserChecker />
