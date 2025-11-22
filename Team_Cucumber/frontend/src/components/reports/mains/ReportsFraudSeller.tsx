@@ -14,11 +14,11 @@ const ReportsFraudSeller = () => {
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
 
-    setReportText({ type: "bans", text });
+    setReportText({ type: "fraud", text });
   };
 
   useEffect(() => {
-    setReportText({ type: "bans", text: "" });
+    setReportText({ type: "fraud", text: "" });
   }, []);
 
   return (
@@ -48,10 +48,14 @@ const ReportsFraudSeller = () => {
           입력해 주시면 빠르게 도움드려요.
         </p>
         <div>
-          <a href="">중고거래 사기를 주의하세요.</a>
+          <a href="" className="text-blue-400 underline">
+            중고거래 사기를 주의하세요.
+          </a>
         </div>
         <div>
-          <a href="">사기를 당했을 때는 어떻게 하나요?</a>
+          <a href="" className="text-blue-400 underline">
+            사기를 당했을 때는 어떻게 하나요?
+          </a>
         </div>
         <div>
           <Textarea
