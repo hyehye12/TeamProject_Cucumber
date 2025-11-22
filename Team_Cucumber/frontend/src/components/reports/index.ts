@@ -11,4 +11,5 @@ export * from "./ReportsFooter";
 export * from "./ReportsList";
 export * from "./mains";
 export * from "./ReportsMainTitle";
-export * from './ReportsButton'
+export * from "./ReportsButton";
+export * from "./ChatroomItem";

@@ -158,10 +158,6 @@ export const AppRoutes = () => {
                 element={<ReportsSuggestReportItem />}
               />
               <Route
-                path=":category/dispute-during-transaction"
-                element={<ReportsDispute />}
-              />
-              <Route
                 path=":category/abuse-or-hate-speech"
                 element={<ReportsAbuse />}
               />
@@ -182,6 +178,10 @@ export const AppRoutes = () => {
                   element={<ReportsPolitics />}
                 />
                 <Route path="under-14" element={<ReportsUnder14 />} />
+              </Route>
+              <Route path="users/dispute">
+                <Route index element={<ReportsMain />} />
+                <Route path="request" element={<ReportsDispute />} />
               </Route>
             </Route>
           </Routes>

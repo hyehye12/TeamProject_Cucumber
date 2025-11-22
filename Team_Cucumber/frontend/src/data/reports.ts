@@ -225,7 +225,7 @@ const users: ReportsListItemType[] = [
     type: "users",
   },
   {
-    path: "dispute-during-transaction",
+    path: "dispute",
     text: "거래 중 분쟁이 발생했어요",
     desc: "",
     type: "users",
@@ -291,6 +291,21 @@ export const userOthers: ReportsListItemType[] = [
     path: "under-14",
     text: "만 14세 미만 사용자예요",
     desc: "",
+    type: "users",
+  },
+];
+
+export const userDispute: ReportsListItemType[] = [
+  {
+    path: "request",
+    text: "분쟁조정 신청하기",
+    desc: "",
+    type: "users",
+  },
+  {
+    path: "../rude-user",
+    text: "거래비용, 하자와 관계없는 상대방의 비매너 행위를 신고해요.",
+    desc: "약속장소에 나타나지 않음/차단요청/물품을 수령 전&택배 발송 전 거래 취소 요청 거부",
     type: "users",
   },
 ];

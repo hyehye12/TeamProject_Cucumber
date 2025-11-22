@@ -45,3 +45,12 @@ export type ReportsCategoryType =
   | "proxy"
   | "inappropriates"
   | "users";
+
+export interface ReportChatroomType {
+  id: string;
+  user: {
+    profileUrl: string;
+    name: string;
+  };
+  title: string;
+}

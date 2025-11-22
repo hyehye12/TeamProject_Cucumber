@@ -8,7 +8,7 @@ import type {
   ReportText,
 } from "../types";
 import { Outlet, useLocation } from "react-router-dom";
-import { reportsLists, reportsMap, userOthers } from "../data";
+import { reportsLists, reportsMap, userDispute, userOthers } from "../data";
 
 export const ReportsPage = () => {
   // 주소
@@ -34,7 +34,9 @@ export const ReportsPage = () => {
 
   // 목록
   const list: ReportsListItemType[] =
-    path.detail === "others" && path.category === "users"
+    path.detail === "dispute" && path.category === "users"
+      ? userDispute
+      : path.detail === "others" && path.category === "users"
       ? userOthers
       : path.category
       ? keyword
