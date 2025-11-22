@@ -45,7 +45,7 @@ const ReportsMain = ({
   className: _className,
   ...props
 }: ReportsMain) => {
-  const className = twMerge("flex-1 text-lg mt-8", _className);
+  const className = twMerge("flex-1 text-lg mt-8 space-y-8", _className);
   return (
     <main className={className} {...props}>
       {children}
