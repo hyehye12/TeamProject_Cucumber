@@ -5,7 +5,7 @@ const ReportsHazardousProducts = () => {
   return (
     <ReportsLayout>
       <ReportsLayout.Header>
-        <ReportsMainTitle title="저작권 침해 물품" />
+        <ReportsMainTitle title="위해 우려 물품" />
       </ReportsLayout.Header>
       <ReportsLayout.Main>
         <BlockUserChecker />
