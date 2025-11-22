@@ -9,8 +9,21 @@ import {
   ReportsProfessional,
   ReportsProxy,
   ReportsTrademarkInfringement,
+  ReportsYouthDrugs,
 } from "../components";
 import { ReportsCopyright } from "../components/reports/mains/ReportsCopyright";
+import ReportsYouthItem from "../components/reports/mains/ReportsYouthItem";
+import ReportsHealthGuideline from "../components/reports/mains/ReportsHealthGuideline";
+import ReportsCustomProducts from "../components/reports/mains/ReportsCustomProducts";
+import ReportsProhibitedFood from "../components/reports/mains/ReportsProhibitedFood";
+import ReportsProhibitedCosmetics from "../components/reports/mains/ReportsProhibitedCosmetics";
+import ReportsDangerousGoods from "../components/reports/mains/ReportsDangerousGoods";
+import ReportsHazardousMaterials from "../components/reports/mains/ReportsHazardousMaterials";
+import ReportsMilitary from "../components/reports/mains/ReportsMilitary";
+import ReportsProhibitedTickets from "../components/reports/mains/ReportsProhibitedTickets";
+import ReportsFakeFreeGiveaway from "../components/reports/mains/ReportsFakeFreeGiveaway";
+import ReportsHazardousProducts from "../components/reports/mains/ReportsHazardousProducts";
+import ReportsOthers from "../components/reports/mains/ReportsOthers";
 
 export const AppRoutes = () => {
   return (
@@ -49,53 +62,53 @@ export const AppRoutes = () => {
               />
               <Route
                 path=":category/youth-restricted-drugs"
-                element={<ReportsCopyright />}
+                element={<ReportsYouthDrugs />}
               />
               <Route
                 path=":category/youth-restricted-items"
-                element={<ReportsCopyright />}
+                element={<ReportsYouthItem />}
               />
               <Route
                 path=":category/health-supplement-guideline"
-                element={<ReportsCopyright />}
+                element={<ReportsHealthGuideline />}
               />
               <Route
                 path=":category/custom-made-products"
-                element={<ReportsCopyright />}
+                element={<ReportsCustomProducts />}
               />
               <Route
                 path=":category/prohibited-food"
-                element={<ReportsCopyright />}
+                element={<ReportsProhibitedFood />}
               />
               <Route
                 path=":category/prohibited-cosmetics"
-                element={<ReportsCopyright />}
+                element={<ReportsProhibitedCosmetics />}
               />
               <Route
                 path=":category/dangerous-goods"
-                element={<ReportsCopyright />}
+                element={<ReportsDangerousGoods />}
               />
               <Route
                 path=":category/hazardous-materials"
-                element={<ReportsCopyright />}
+                element={<ReportsHazardousMaterials />}
               />
               <Route
                 path=":category/military-police-uniforms"
-                element={<ReportsCopyright />}
+                element={<ReportsMilitary />}
               />
               <Route
                 path=":category/prohibited-tickets"
-                element={<ReportsCopyright />}
+                element={<ReportsProhibitedTickets />}
               />
               <Route
                 path=":category/fake-free-giveaway"
-                element={<ReportsCopyright />}
+                element={<ReportsFakeFreeGiveaway />}
               />
               <Route
                 path=":category/hazardous-products"
-                element={<ReportsCopyright />}
+                element={<ReportsHazardousProducts />}
               />
-              <Route path=":category/others" element={<ReportsCopyright />} />
+              <Route path=":category/others" element={<ReportsOthers />} />
             </Route>
           </Routes>
         )}
