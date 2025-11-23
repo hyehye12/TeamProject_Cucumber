@@ -9,7 +9,7 @@ const useScrollLock = (isLocked: boolean = true) => {
     // 클린업 시 원래 상태 복원을 위해 현재 body의 overflow 스타일을 캡처
     const originalStyle = window.getComputedStyle(document.body).overflow;
 
-    // 모달 열릴 때 body 스크롤 방지(컴포넌트가 화면에서 나타날 때 실행)
+    // 모달 열릴 때 body 가로, 세로 스크롤 방지(컴포넌트가 화면에서 나타날 때 실행)
     document.body.style.overflow = "hidden";
 
     return () => {
