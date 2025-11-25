@@ -2,9 +2,16 @@
 import { useState } from "react";
 import { ProductCard, ToggleButton } from "../../components";
 import { Icon } from "../../components";
+import BottomSheet from "../../components/common/BottomSheet/BottomSheet";
+import Button from "../../components/common/Button/Button";
 
 export const TestHeminPage = () => {
   const [isChecked, setIsChecked] = useState(false);
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpenDefault = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const mockItems = [
     {
@@ -38,7 +45,7 @@ export const TestHeminPage = () => {
         {mockItems.map((item) => (
           <ProductCard
             key={item.id}
-            className="flex gap-3 py-3 border-b border-gray-100 hover:shadow-md hover:bg-gray-200 p-4 rounded-lg"
+            className="relative flex gap-3 py-3 border-b border-gray-100 hover:shadow-md hover:bg-gray-200 p-4 rounded-lg"
             onClick={() => {
               console.log("상세보기", item.id);
             }}
@@ -76,7 +83,7 @@ export const TestHeminPage = () => {
               {/* 오른쪽 세로 점(⋮) 버튼 */}
               <button
                 type="button"
-                className="ml-2 self-start px-2 text-gray-400 hover:text-gray-600"
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
                 onClick={(e) => {
                   e.stopPropagation(); // 카드 onClick 안 타게 막기
                   console.log("더보기 클릭", item.id);
@@ -127,6 +134,41 @@ export const TestHeminPage = () => {
             </div>
           </ProductCard>
         ))}
+      </div>
+      <br />
+      <br />
+      <br />
+      <div className="p-4">
+        <button
+          className="px-4 py-2 rounded-md bg-orange-500 text-white"
+          onClick={handleOpenDefault}
+        >
+          바텀시트 열기
+        </button>
+
+        <BottomSheet open={open} onClose={handleClose} className="bg-gray-300">
+          <Button className="border-b bg-white text-black hover:bg-gray-300 w-full">
+            관심있음
+          </Button>
+          <Button className="mb-3 bg-white text-black hover:bg-gray-300 w-full">
+            관심없음
+          </Button>
+          <Button className="border-b bg-white text-black hover:bg-gray-300 w-full">
+            이 글 숨기기
+          </Button>
+          <Button className="border-b bg-white text-black hover:bg-gray-300 w-full">
+            게시글 노출 기준
+          </Button>
+          <Button className="mb-3 bg-white text-red-500 hover:bg-gray-300 w-full">
+            신고하기
+          </Button>
+          <Button
+            className="bg-white text-black hover:bg-gray-300 w-full"
+            onClick={handleClose}
+          >
+            닫기
+          </Button>
+        </BottomSheet>
       </div>
     </div>
   );
