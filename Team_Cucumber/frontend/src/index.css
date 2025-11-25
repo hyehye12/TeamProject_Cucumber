@@ -24,3 +24,15 @@ body {
 }
 
 @import "./components\common\PageTransition\page_transition.css";
+
+@layer utilities {
+  .clamp-2-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 두 줄까지만 표시 */
+    -webkit-box-orient: vertical;
+    word-break: keep-all; /* 한글 자연스럽게 줄바꿈 */
+    overflow-wrap: break-word; /* 긴 영어/URL만 잘라줌 */
+  }
+}
