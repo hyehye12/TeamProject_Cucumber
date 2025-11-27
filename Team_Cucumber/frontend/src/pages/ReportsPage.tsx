@@ -8,7 +8,7 @@ import type {
   ReportText,
 } from "../types";
 import { Outlet, useLocation } from "react-router-dom";
-import { reportsLists, reportsMap, userDispute, userOthers } from "../data";
+import { reportsLists } from "../data";
 
 export const ReportsPage = () => {
   // 주소
@@ -24,6 +24,7 @@ export const ReportsPage = () => {
   const [path, setPath] = useState<ReportsPathType>({
     category: undefined,
     detail: undefined,
+    deeper: undefined,
   });
   const [reportText, setReportText] = useState<ReportText | undefined>(
     undefined
@@ -32,33 +33,35 @@ export const ReportsPage = () => {
   // 전체 목록
   const lists = Object.values(reportsLists).flat();
 
-  // 목록
   const list: ReportsListItemType[] =
-    path.detail === "dispute" && path.category === "users"
-      ? userDispute
-      : path.detail === "others" && path.category === "users"
-      ? userOthers
-      : path.category
+    !path.category && !path.detail
+      ? keyword
+        ? lists.filter((l) => l.text.includes(keyword))
+        : reportsLists["reports"]
+      : (path.detail === "dispute" && !path.deeper) ||
+        (path.detail === "others" && path.category === "users" && !path.deeper)
+      ? keyword
+        ? reportsLists[path.detail as ReportsCategoryType].filter((l) =>
+            l.text.includes(keyword)
+          )
+        : reportsLists[path.detail as ReportsCategoryType]
+      : !path.detail && path.category
       ? keyword
         ? reportsLists[path.category as ReportsCategoryType].filter((l) =>
             l.text.includes(keyword)
           )
         : reportsLists[path.category as ReportsCategoryType]
-      : keyword
-      ? lists.filter((l) => l.text.includes(keyword))
-      : reportsLists["reports"];
-
-  const content = reportsMap[path.category as ReportsCategoryType];
+      : [];
 
   const handleReport = () => {
     setIsReported(true);
   };
 
   useEffect(() => {
-    const [_, __, category, detail] = pathname.split("/");
+    const [_, __, category, detail, deeper] = pathname.split("/");
 
     console.log(category);
-    setPath({ category, detail });
+    setPath({ category, detail, deeper });
   }, [pathname]);
 
   const value: ReportsContextType = {
@@ -72,7 +75,6 @@ export const ReportsPage = () => {
     isReported,
     setIsReported,
     list,
-    content,
     reportText,
     setReportText,
     handleReport,

@@ -356,13 +356,6 @@ export const reportsLists: Record<
   proxy: [],
   inappropriates,
   users,
-};
-
-export const reportsMap: Record<ReportsCategoryType, any> = {
-  bans: {},
-  professional,
-  frauds: {},
-  proxy,
-  inappropriates: {},
-  users: {},
+  others: userOthers,
+  dispute: userDispute,
 };

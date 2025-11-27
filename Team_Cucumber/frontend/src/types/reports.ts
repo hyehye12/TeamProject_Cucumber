@@ -19,7 +19,6 @@ export type ReportsContextType = {
   setIsReported: (isReported: boolean) => void;
   handleReport: () => void;
   list: ReportsListItemType[];
-  content?: any;
   reportText?: ReportText;
   setReportText: (reportText: ReportText) => void;
 };
@@ -27,6 +26,7 @@ export type ReportsContextType = {
 export interface ReportsPathType {
   category?: string;
   detail?: string;
+  deeper?: string;
 }
 
 export interface ReportsListItemType {
@@ -44,7 +44,9 @@ export type ReportsCategoryType =
   | "frauds"
   | "proxy"
   | "inappropriates"
-  | "users";
+  | "users"
+  | "others"
+  | "dispute";
 
 export interface ReportChatroomType {
   id: string;
