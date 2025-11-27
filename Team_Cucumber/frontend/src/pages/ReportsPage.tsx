@@ -121,8 +121,6 @@ export const ReportsPage = () => {
     handleReport();
   }, [isReported]);
 
-  console.log("신고 정보", reportInfo);
-
   const value: ReportsContextType = {
     keyword,
     setKeyword,

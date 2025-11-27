@@ -14,7 +14,7 @@ export const ReportsButton = ({
   const className = twMerge("w-full", _className);
 
   return (
-    <Button className={className} {...props} onClick={() => handleReport}>
+    <Button className={className} {...props} onClick={() => handleReport()}>
       신고하기
     </Button>
   );
