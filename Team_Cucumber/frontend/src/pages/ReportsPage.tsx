@@ -37,6 +37,8 @@ export const ReportsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setTitle] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleClose = () => {
     setIsModalOpen(false);
   };
@@ -105,6 +107,8 @@ export const ReportsPage = () => {
 
     if (!opponent_id || !product_id || !report_field_id) return;
 
+    setIsLoading(true);
+
     const handleReport = async () => {
       await fetch("", {
         method: "POST",
@@ -118,7 +122,16 @@ export const ReportsPage = () => {
       });
     };
 
-    handleReport();
+    const timer = setTimeout(() => {
+      handleReport()
+        .then((response) => console.log(response))
+        .catch((e) => console.error(e))
+        .finally(() => setIsLoading(false));
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [isReported]);
 
   const value: ReportsContextType = {
@@ -140,7 +153,10 @@ export const ReportsPage = () => {
     onOpen: handleOpen,
     title,
     setTitle,
+    isLoading,
   };
+
+  console.log("로딩", isLoading);
 
   return (
     <ReportsProvider value={value}>

@@ -1,5 +1,5 @@
 import type { ReactButton } from "../../types";
-import { Button } from "../common";
+import { Button, Spinner } from "../common";
 import { twMerge } from "tailwind-merge";
 import { useReportsContext } from "./context";
 
@@ -9,13 +9,13 @@ export const ReportsButton = ({
   className: _className,
   ...props
 }: ReportsButton) => {
-  const { handleReport } = useReportsContext();
+  const { handleReport, isLoading } = useReportsContext();
 
   const className = twMerge("w-full", _className);
 
   return (
     <Button className={className} {...props} onClick={() => handleReport()}>
-      신고하기
+      {isLoading ? <Spinner /> : "신고하기"}
     </Button>
   );
 };

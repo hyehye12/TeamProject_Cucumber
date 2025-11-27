@@ -21,6 +21,7 @@ export type ReportsContextType = {
   onClose: () => void;
   title: string;
   setTitle: (title: string) => void;
+  isLoading: boolean;
 };
 
 export interface ReportsPathType {
