@@ -15,7 +15,7 @@ export const ReportsProxy = () => {
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
 
-    setReportInfo((prev) => ({ ...prev, text }));
+    setReportInfo((prev) => ({ ...prev, report_text: text }));
   };
 
   useReportState();
