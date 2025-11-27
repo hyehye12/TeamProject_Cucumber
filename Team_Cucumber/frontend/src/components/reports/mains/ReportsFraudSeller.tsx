@@ -10,7 +10,7 @@ import {
 } from "../../../components";
 
 const ReportsFraudSeller = () => {
-  const { handleReport, reportInfo, setReportInfo } = useReportsContext();
+  const { reportInfo, setReportInfo } = useReportsContext();
 
   useReportState();
 
@@ -68,7 +68,7 @@ const ReportsFraudSeller = () => {
         <BlockUserChecker />
       </ReportsLayout.Main>
       <ReportsLayout.Footer>
-        <ReportsButton onClick={handleReport} />
+        <ReportsButton disabled={!reportInfo.report_text} />
       </ReportsLayout.Footer>
     </ReportsLayout>
   );

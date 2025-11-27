@@ -9,7 +9,7 @@ import {
 } from "../../../components";
 
 const ReportsSuggestReportItem = () => {
-  const { handleReport, reportInfo, setReportInfo } = useReportsContext();
+  const { reportInfo, setReportInfo } = useReportsContext();
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
@@ -44,7 +44,7 @@ const ReportsSuggestReportItem = () => {
         </div>
       </ReportsLayout.Main>
       <ReportsLayout.Footer>
-        <ReportsButton onClick={handleReport} />
+        <ReportsButton disabled={!reportInfo.report_text} />
       </ReportsLayout.Footer>
     </ReportsLayout>
   );

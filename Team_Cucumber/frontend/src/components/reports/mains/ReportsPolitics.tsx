@@ -10,7 +10,7 @@ import {
 import { type ChangeEvent } from "react";
 
 const ReportsPolitics = () => {
-  const { handleReport, reportInfo, setReportInfo } = useReportsContext();
+  const { reportInfo, setReportInfo } = useReportsContext();
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
@@ -55,7 +55,7 @@ const ReportsPolitics = () => {
         <BlockUserChecker />
       </ReportsLayout.Main>
       <ReportsLayout.Footer>
-        <ReportsButton onClick={handleReport} />
+        <ReportsButton disabled={!reportInfo.report_text} />
       </ReportsLayout.Footer>
     </ReportsLayout>
   );

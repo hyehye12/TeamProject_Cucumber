@@ -47,7 +47,7 @@ export const ReportsProxy = () => {
         <BlockUserChecker />
       </ReportsLayout.Main>
       <ReportsLayout.Footer>
-        <ReportsButton />
+        <ReportsButton disabled={!reportInfo.report_text} />
       </ReportsLayout.Footer>
     </ReportsLayout>
   );

@@ -9,7 +9,7 @@ import {
 } from "../../../components";
 
 const ReportsSexualBehavior = () => {
-  const { handleReport, reportInfo, setReportInfo } = useReportsContext();
+  const { reportInfo, setReportInfo } = useReportsContext();
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
@@ -41,7 +41,7 @@ const ReportsSexualBehavior = () => {
         <p className="text-gray-400">{`('나의 당근 > 설정 > 차단 사용자 관리'에서 취소할 수 있습니다.)`}</p>
       </ReportsLayout.Main>
       <ReportsLayout.Footer>
-        <ReportsButton onClick={handleReport} />
+        <ReportsButton disabled={!reportInfo.report_text} />
       </ReportsLayout.Footer>
     </ReportsLayout>
   );

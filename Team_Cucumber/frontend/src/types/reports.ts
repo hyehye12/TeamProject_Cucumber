@@ -59,8 +59,8 @@ export interface ReportChatroomType {
 }
 
 export interface ReportInfo {
-  opponent_id: string;
-  product_id: string;
+  opponent_id?: string;
+  product_id?: string;
   report_text: string;
   report_field_id?: string;
   report_type_id?: string;

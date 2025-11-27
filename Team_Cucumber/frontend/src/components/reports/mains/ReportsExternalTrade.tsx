@@ -10,7 +10,7 @@ import {
 import { type ChangeEvent } from "react";
 
 const ReportsExternalTrade = () => {
-  const { handleReport, reportInfo, setReportInfo } = useReportsContext();
+  const { reportInfo, setReportInfo } = useReportsContext();
 
   useReportState();
 
@@ -59,7 +59,7 @@ const ReportsExternalTrade = () => {
         <BlockUserChecker />
       </ReportsLayout.Main>
       <ReportsLayout.Footer>
-        <ReportsButton onClick={handleReport} />
+        <ReportsButton disabled={!reportInfo.report_text} />
       </ReportsLayout.Footer>
     </ReportsLayout>
   );

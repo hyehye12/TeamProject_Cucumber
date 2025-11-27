@@ -9,7 +9,7 @@ import {
 import { type ChangeEvent } from "react";
 
 const ReportsOthers = () => {
-  const { handleReport, reportInfo, setReportInfo } = useReportsContext();
+  const { reportInfo, setReportInfo } = useReportsContext();
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
@@ -34,7 +34,7 @@ const ReportsOthers = () => {
         <p className="text-right text-gray-400">{`${reportInfo?.report_text.length}/300`}</p>
       </ReportsLayout.Main>
       <ReportsLayout.Footer>
-        <ReportsButton onClick={handleReport} />
+        <ReportsButton disabled={!reportInfo.report_text} />
       </ReportsLayout.Footer>
     </ReportsLayout>
   );

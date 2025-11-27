@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  ReportsHeader,
-  ReportsModal,
-  ReportsProvider,
-  useReportState,
-} from "../components";
+import { ReportsHeader, ReportsModal, ReportsProvider } from "../components";
 import type {
   ReportInfo,
   ReportsCategoryType,
@@ -17,7 +12,7 @@ import { reportsLists } from "../data";
 
 export const ReportsPage = () => {
   // 주소
-  const { pathname } = useLocation();
+  const { pathname, state } = useLocation();
   // 검색어 상태 관리
   const [keyword, setKeyword] = useState("");
   // 검색창 여닫기 상태 관리
@@ -76,6 +71,19 @@ export const ReportsPage = () => {
     setIsReported(true);
   };
 
+  // 신고 페이지 입장 시 product_id 혹은 user_id 필요
+  useEffect(() => {
+    console.log(state);
+    // if (!state) return;
+    // const { product_id, user_id } = state;
+
+    setReportInfo((prev) => ({
+      ...prev,
+      opponent_id: "uidShouldBeHere",
+      product_id: "pidShouldBeHere",
+    }));
+  }, []);
+
   useEffect(() => {
     const [_, __, category, detail, deeper] = pathname.split("/");
 
@@ -83,6 +91,7 @@ export const ReportsPage = () => {
     setPath({ category, detail, deeper });
   }, [pathname]);
 
+  // 신고 전송
   useEffect(() => {
     if (!isReported) return;
 
@@ -94,16 +103,22 @@ export const ReportsPage = () => {
       report_type_id,
     } = reportInfo;
 
-    fetch("", {
-      method: "POST",
-      body: JSON.stringify({
-        opponent_id,
-        product_id,
-        report_text,
-        report_field_id,
-        report_type_id,
-      }),
-    });
+    if (!opponent_id || !product_id || !report_field_id) return;
+
+    const handleReport = async () => {
+      await fetch("", {
+        method: "POST",
+        body: JSON.stringify({
+          opponent_id,
+          product_id,
+          report_text,
+          report_field_id,
+          report_type_id,
+        }),
+      });
+    };
+
+    handleReport();
   }, [isReported]);
 
   console.log("신고 정보", reportInfo);
