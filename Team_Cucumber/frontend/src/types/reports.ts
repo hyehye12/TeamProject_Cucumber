@@ -21,6 +21,11 @@ export type ReportsContextType = {
   list: ReportsListItemType[];
   reportText?: ReportText;
   setReportText: (reportText: ReportText) => void;
+  isModalOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  title: string;
+  setTitle: (title: string) => void;
 };
 
 export interface ReportsPathType {

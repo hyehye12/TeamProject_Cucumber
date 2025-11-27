@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ReportsHeader, ReportsProvider } from "../components";
+import { ReportsHeader, ReportsModal, ReportsProvider } from "../components";
 import type {
   ReportsCategoryType,
   ReportsContextType,
@@ -29,6 +29,15 @@ export const ReportsPage = () => {
   const [reportText, setReportText] = useState<ReportText | undefined>(
     undefined
   );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [title, setTitle] = useState("");
+
+  const handleClose = () => {
+    setIsModalOpen(false);
+  };
+  const handleOpen = () => {
+    setIsModalOpen(true);
+  };
 
   // 전체 목록
   const lists = Object.values(reportsLists).flat();
@@ -60,7 +69,7 @@ export const ReportsPage = () => {
   useEffect(() => {
     const [_, __, category, detail, deeper] = pathname.split("/");
 
-    console.log(category);
+    console.log("category", category);
     setPath({ category, detail, deeper });
   }, [pathname]);
 
@@ -78,10 +87,16 @@ export const ReportsPage = () => {
     reportText,
     setReportText,
     handleReport,
+    isModalOpen,
+    onClose: handleClose,
+    onOpen: handleOpen,
+    title,
+    setTitle,
   };
 
   return (
     <ReportsProvider value={value}>
+      <ReportsModal />
       <article className="flex flex-col h-screen">
         <ReportsHeader />
         <Outlet />

@@ -4,7 +4,12 @@ import { useReportsContext } from "./context";
 import { Icon } from "../common";
 
 export const ReportsList = () => {
-  const { keyword, list } = useReportsContext();
+  const { keyword, list, onOpen, setTitle } = useReportsContext();
+
+  const handleClick = (title: string) => {
+    setTitle(title);
+    onOpen();
+  };
 
   return (
     <div>
@@ -16,17 +21,40 @@ export const ReportsList = () => {
           <ul>
             {list.map((item, index) => {
               const { path, text, desc } = item;
-              return (
-                <Link to={path} key={`${path}_${index}`}>
-                  <li className="flex py-6 items-center border-t border-gray-100 last:border-b hover:bg-gray-50">
-                    <div className="flex-1">
-                      <p className="text-lg">{text}</p>
-                      {desc && <p className="text-sm text-gray-400">{desc}</p>}
-                    </div>
-                    <Icon name="right" className="text-3xl" />
-                  </li>
-                </Link>
-              );
+
+              if (path) {
+                return (
+                  <Link to={path} key={`${path}_${index}`}>
+                    <li className="flex py-6 items-center border-t border-gray-100 last:border-b hover:bg-gray-50">
+                      <div className="flex-1">
+                        <p className="text-lg">{text}</p>
+                        {desc && (
+                          <p className="text-sm text-gray-400">{desc}</p>
+                        )}
+                      </div>
+                      <Icon name="right" className="text-3xl" />
+                    </li>
+                  </Link>
+                );
+              } else {
+                return (
+                  <button
+                    className="w-full cursor-pointer"
+                    onClick={() => handleClick(text)}
+                    key={`${path}_${index}`}
+                  >
+                    <li className="flex items-center py-6 border-t border-gray-100 last:border-b hover:bg-gray-50">
+                      <div className="flex-1 flex flex-col items-start">
+                        <p className="text-lg">{text}</p>
+                        {desc && (
+                          <p className="text-sm text-gray-400">{desc}</p>
+                        )}
+                      </div>
+                      <Icon name="right" className="text-3xl" />
+                    </li>
+                  </button>
+                );
+              }
             })}
           </ul>
         </div>
@@ -36,8 +64,10 @@ export const ReportsList = () => {
           <p className="text-gray-400 text-md py-4">{`${list.length}개의 결과`}</p>
           {list.length > 0 && (
             <ul>
+              ``
               {list.map((item, index) => {
                 const { path, text, desc, type } = item;
+                console.log("경로", path);
                 return (
                   <Link to={path} key={`${path}_${index}`}>
                     <li className="flex py-6 items-center border-t border-gray-100 last:border-b hover:bg-gray-50">
