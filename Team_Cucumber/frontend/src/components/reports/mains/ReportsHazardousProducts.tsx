@@ -1,7 +1,13 @@
 import { ReportsLayout } from "../../../layout";
-import { BlockUserChecker, ReportsButton, ReportsMainTitle } from "../..";
+import {
+  BlockUserChecker,
+  ReportsButton,
+  ReportsMainTitle,
+  useReportState,
+} from "../../../components";
 
 const ReportsHazardousProducts = () => {
+  useReportState();
   return (
     <ReportsLayout>
       <ReportsLayout.Header>

@@ -1,24 +1,23 @@
-import { useEffect, type ChangeEvent } from "react";
+import { type ChangeEvent } from "react";
 import { ReportsLayout } from "../../../layout";
 import {
   ReportsButton,
   ReportsMainTitle,
   Textarea,
   useReportsContext,
+  useReportState,
 } from "../..";
 
 const ReportsUnwantedChat = () => {
-  const { handleReport, reportText, setReportText } = useReportsContext();
+  const { handleReport, reportInfo, setReportInfo } = useReportsContext();
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
 
-    setReportText({ type: "users", text });
+    setReportInfo((prev) => ({ ...prev, text }));
   };
 
-  useEffect(() => {
-    setReportText({ type: "users", text: "" });
-  }, []);
+  useReportState();
 
   return (
     <ReportsLayout>
@@ -35,10 +34,10 @@ const ReportsUnwantedChat = () => {
           <Textarea
             placeholder="신고내용을 입력해주세요.(최대 300자)"
             className="border border-gray-200 mb-0"
-            value={reportText?.text}
+            value={reportInfo?.report_text}
             onChange={handleChange}
           />
-          <p className="text-right text-gray-400">{`${reportText?.text.length}/300`}</p>
+          <p className="text-right text-gray-400">{`${reportInfo?.report_text.length}/300`}</p>
         </div>
         <p className="text-gray-500">
           이 항목으로 신고하면 서로의 게시글이 보이지 않고, 서로 더 이상 채팅을
@@ -54,5 +53,3 @@ const ReportsUnwantedChat = () => {
 };
 
 export default ReportsUnwantedChat;
-
-

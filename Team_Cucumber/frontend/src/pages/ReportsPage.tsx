@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
-import { ReportsHeader, ReportsModal, ReportsProvider } from "../components";
+import {
+  ReportsHeader,
+  ReportsModal,
+  ReportsProvider,
+  useReportState,
+} from "../components";
 import type {
+  ReportInfo,
   ReportsCategoryType,
   ReportsContextType,
   ReportsListItemType,
   ReportsPathType,
-  ReportText,
 } from "../types";
 import { Outlet, useLocation } from "react-router-dom";
 import { reportsLists } from "../data";
@@ -26,9 +31,14 @@ export const ReportsPage = () => {
     detail: undefined,
     deeper: undefined,
   });
-  const [reportText, setReportText] = useState<ReportText | undefined>(
-    undefined
-  );
+  const [reportInfo, setReportInfo] = useState<ReportInfo>({
+    opponent_id: "",
+    product_id: "",
+    report_text: "",
+    report_field_id: "",
+    report_type_id: "",
+  });
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setTitle] = useState("");
 
@@ -73,6 +83,31 @@ export const ReportsPage = () => {
     setPath({ category, detail, deeper });
   }, [pathname]);
 
+  useEffect(() => {
+    if (!isReported) return;
+
+    const {
+      opponent_id,
+      product_id,
+      report_text,
+      report_field_id,
+      report_type_id,
+    } = reportInfo;
+
+    fetch("", {
+      method: "POST",
+      body: JSON.stringify({
+        opponent_id,
+        product_id,
+        report_text,
+        report_field_id,
+        report_type_id,
+      }),
+    });
+  }, [isReported]);
+
+  console.log("신고 정보", reportInfo);
+
   const value: ReportsContextType = {
     keyword,
     setKeyword,
@@ -84,8 +119,8 @@ export const ReportsPage = () => {
     isReported,
     setIsReported,
     list,
-    reportText,
-    setReportText,
+    reportInfo,
+    setReportInfo,
     handleReport,
     isModalOpen,
     onClose: handleClose,

@@ -1,7 +1,13 @@
 import { ReportsLayout } from "../../../layout";
-import { BlockUserChecker, ReportsButton, ReportsMainTitle } from "../..";
+import {
+  BlockUserChecker,
+  ReportsButton,
+  ReportsMainTitle,
+  useReportState,
+} from "../../../components";
 
 const ReportsYouthItem = () => {
+  useReportState();
   return (
     <ReportsLayout>
       <ReportsLayout.Header>

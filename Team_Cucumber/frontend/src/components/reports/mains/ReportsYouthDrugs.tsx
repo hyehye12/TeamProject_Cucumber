@@ -1,9 +1,13 @@
 import { ReportsLayout } from "../../../layout";
-import { BlockUserChecker } from "../BlockUserChecker";
-import { ReportsButton } from "../ReportsButton";
-import { ReportsMainTitle } from "../ReportsMainTitle";
+import {
+  BlockUserChecker,
+  ReportsButton,
+  ReportsMainTitle,
+  useReportState,
+} from "../../../components";
 
 export const ReportsYouthDrugs = () => {
+  useReportState();
   return (
     <ReportsLayout>
       <ReportsLayout.Header>

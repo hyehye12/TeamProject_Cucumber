@@ -1,24 +1,24 @@
-import { useEffect, type ChangeEvent } from "react";
+import { type ChangeEvent } from "react";
 import { ReportsLayout } from "../../../layout";
 import {
   ReportsButton,
   ReportsMainTitle,
   Textarea,
   useReportsContext,
-} from "../..";
+  useReportState,
+} from "../../../components";
 
 const ReportsSuggestReportItem = () => {
-  const { handleReport, reportText, setReportText } = useReportsContext();
+  const { handleReport, reportInfo, setReportInfo } = useReportsContext();
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
 
-    setReportText({ type: "inappropriate", text });
+    setReportInfo((prev) => ({ ...prev, text }));
   };
 
-  useEffect(() => {
-    setReportText({ type: "inappropriate", text: "" });
-  }, []);
+  useReportState();
+
   return (
     <ReportsLayout>
       <ReportsLayout.Header>
@@ -37,10 +37,10 @@ const ReportsSuggestReportItem = () => {
           <Textarea
             placeholder="신고내용을 입력해주세요.(최대 300자)"
             className="border border-gray-200 mb-0"
-            value={reportText?.text}
+            value={reportInfo?.report_text}
             onChange={handleChange}
           />
-          <p className="text-right text-gray-400">{`${reportText?.text.length}/300`}</p>
+          <p className="text-right text-gray-400">{`${reportInfo?.report_text.length}/300`}</p>
         </div>
       </ReportsLayout.Main>
       <ReportsLayout.Footer>

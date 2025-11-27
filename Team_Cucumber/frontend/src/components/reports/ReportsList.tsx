@@ -1,13 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { reportsLists } from "../../data";
 import { useReportsContext } from "./context";
 import { Icon } from "../common";
 
 export const ReportsList = () => {
-  const { keyword, list, onOpen, setTitle } = useReportsContext();
+  const navigate = useNavigate();
+  const { keyword, list, onOpen, setTitle, setReportInfo } =
+    useReportsContext();
 
-  const handleClick = (title: string) => {
+  const handleClick = (path: string, field?: string, type?: string) => {
+    navigate(path, { state: { field, type } });
+  };
+
+  const handleModal = (title: string, field?: string, type?: string) => {
     setTitle(title);
+    setReportInfo((prev) => ({
+      ...prev,
+      report_field_id: field,
+      report_type_id: type,
+    }));
     onOpen();
   };
 
@@ -20,41 +31,26 @@ export const ReportsList = () => {
           </p>
           <ul>
             {list.map((item, index) => {
-              const { path, text, desc } = item;
-
-              if (path) {
-                return (
-                  <Link to={path} key={`${path}_${index}`}>
-                    <li className="flex py-6 items-center border-t border-gray-100 last:border-b hover:bg-gray-50">
-                      <div className="flex-1">
-                        <p className="text-lg">{text}</p>
-                        {desc && (
-                          <p className="text-sm text-gray-400">{desc}</p>
-                        )}
-                      </div>
-                      <Icon name="right" className="text-3xl" />
-                    </li>
-                  </Link>
-                );
-              } else {
-                return (
-                  <button
-                    className="w-full cursor-pointer"
-                    onClick={() => handleClick(text)}
-                    key={`${path}_${index}`}
-                  >
-                    <li className="flex items-center py-6 border-t border-gray-100 last:border-b hover:bg-gray-50">
-                      <div className="flex-1 flex flex-col items-start">
-                        <p className="text-lg">{text}</p>
-                        {desc && (
-                          <p className="text-sm text-gray-400">{desc}</p>
-                        )}
-                      </div>
-                      <Icon name="right" className="text-3xl" />
-                    </li>
-                  </button>
-                );
-              }
+              const { path, text, desc, field, type } = item;
+              return (
+                <button
+                  className="w-full cursor-pointer"
+                  key={`${path}_${index}`}
+                  onClick={
+                    path
+                      ? () => handleClick(path, field, type)
+                      : () => handleModal(text, field, type)
+                  }
+                >
+                  <li className="flex py-6 items-center border-t border-gray-100 last:border-b hover:bg-gray-50">
+                    <div className="flex-1 flex flex-col items-start">
+                      <p className="text-lg">{text}</p>
+                      {desc && <p className="text-sm text-gray-400">{desc}</p>}
+                    </div>
+                    <Icon name="right" className="text-3xl" />
+                  </li>
+                </button>
+              );
             })}
           </ul>
         </div>

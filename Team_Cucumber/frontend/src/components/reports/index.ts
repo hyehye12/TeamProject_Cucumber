@@ -13,3 +13,4 @@ export * from "./mains";
 export * from "./ReportsMainTitle";
 export * from "./ReportsButton";
 export * from "./ChatroomItem";
+export * from "./useReportState";
