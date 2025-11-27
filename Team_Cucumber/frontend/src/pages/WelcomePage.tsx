@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useScrollLock from "@/hooks/useScrollLock";
 
 const WelcomePage = () => {
-  // useScrollLock();
+  useScrollLock();
   const navigate = useNavigate();
 
   return (

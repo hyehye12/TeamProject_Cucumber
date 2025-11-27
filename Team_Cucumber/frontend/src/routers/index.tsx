@@ -43,6 +43,7 @@ import ReportsUnder14 from "../components/reports/mains/ReportsUnder14";
 import WelcomePage from "../pages/WelcomePage";
 import LocationPage from "@/pages/LocationPage";
 import LoginPage from "@/pages/LoginPage";
+import HomePage from "@/pages/HomePage";
 
 export const AppRoutes = () => {
   return (
@@ -63,6 +64,7 @@ export const AppRoutes = () => {
             {/* 시작화면 */}
             <Route path="/welcome" element={<WelcomePage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/home" element={<HomePage />} />
 
             {/* 회원가입 */}
             <Route path="/signup/location" element={<LocationPage />} />
