@@ -1,4 +1,4 @@
-import React, { createRef, useRef } from "react";
+import React, { createRef, useEffect, useRef } from "react";
 import { useLocation, type Location } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
@@ -41,6 +41,14 @@ export const PageTransition = ({
   const className = ["min-h-screen will-change-transform", _className].join(
     " "
   );
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto",
+    });
+  }, [location.key]);
 
   return (
     <TransitionGroup component={null}>
