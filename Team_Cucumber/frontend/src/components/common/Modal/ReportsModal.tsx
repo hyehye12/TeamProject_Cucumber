@@ -1,9 +1,16 @@
 import { useReportsContext } from "../../reports";
+import { Spinner } from "../Icon";
 import Modal from "./Modal";
 
 export const ReportsModal = () => {
-  const { isModalOpen, title, onClose, setReportInfo, setIsReported } =
-    useReportsContext();
+  const {
+    isModalOpen,
+    title,
+    onClose,
+    setReportInfo,
+    setIsReported,
+    isLoading,
+  } = useReportsContext();
 
   const handleClick = () => {
     setReportInfo((prev) => ({
@@ -25,7 +32,7 @@ export const ReportsModal = () => {
             className="bg-red-400"
             onClick={() => setIsReported(true)}
           >
-            신고하기
+            {isLoading ? <Spinner /> : "신고하기"}
           </Modal.ConfirmButton>
         </Modal.Footer>
       </Modal.Content>
