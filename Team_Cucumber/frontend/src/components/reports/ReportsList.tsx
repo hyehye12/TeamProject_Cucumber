@@ -60,10 +60,9 @@ export const ReportsList = () => {
           <p className="text-gray-400 text-md py-4">{`${list.length}개의 결과`}</p>
           {list.length > 0 && (
             <ul>
-              ``
               {list.map((item, index) => {
-                const { path, text, desc, type } = item;
-                console.log("경로", path);
+                const { path, text, desc, type, field } = item;
+
                 return (
                   <Link to={path} key={`${path}_${index}`}>
                     <li className="flex py-6 items-center border-t border-gray-100 last:border-b hover:bg-gray-50">
@@ -76,7 +75,7 @@ export const ReportsList = () => {
                           <p className="text-sm text-gray-400">
                             {`[${
                               reportsLists["reports"].filter(
-                                (r) => r.path === type
+                                (r) => r.field === field
                               )[0].text
                             }]의 하위항목`}
                           </p>

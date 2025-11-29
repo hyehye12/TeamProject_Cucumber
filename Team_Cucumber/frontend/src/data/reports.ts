@@ -4,27 +4,33 @@ const reports: ReportsListItemType[] = [
   {
     text: "거래 금지 물품이에요.",
     path: "bans",
+    field: "A",
   },
   {
     text: "전문판매업자 같아요.",
     path: "professional",
+    field: "B",
   },
   {
     text: "사기인 것 같아요.",
     path: "frauds",
+    field: "C",
   },
   {
     text: "대리 결제(대출)/구매/판매 행위를 해요",
     path: "proxy",
     desc: "후불결제를 활용한 현금화 행위/상품권 예약 판매/대출 행위 등이 포함돼요.",
+    field: "D",
   },
   {
     text: "부적절한 행위가 있어요",
     path: "inappropriates",
+    field: "E",
   },
   {
     text: "작성자 신고하기",
     path: "users",
+    field: "F",
   },
 ];
 
