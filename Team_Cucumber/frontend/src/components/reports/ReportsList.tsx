@@ -1,0 +1,100 @@
+import { Link, useNavigate } from "react-router-dom";
+import { reportsLists } from "../../data";
+import { useReportsContext } from "./context";
+import { Icon } from "../common";
+
+export const ReportsList = () => {
+  const navigate = useNavigate();
+  const { keyword, list, onOpen, setTitle, setReportInfo } =
+    useReportsContext();
+
+  const handleClick = (path: string, field?: string, type?: string) => {
+    navigate(path, { state: { field, type } });
+  };
+
+  const handleModal = (title: string, field?: string, type?: string) => {
+    setTitle(title);
+    setReportInfo((prev) => ({
+      ...prev,
+      report_field_id: field,
+      report_type_id: type,
+    }));
+    onOpen();
+  };
+
+  return (
+    <div>
+      {list.length > 0 && !keyword && (
+        <div>
+          <p className="font-bold text-2xl pb-8">
+            게시글을 신고하는 이유를 선택해주세요.
+          </p>
+          <ul>
+            {list.map((item, index) => {
+              const { path, text, desc, field, type } = item;
+              return (
+                <button
+                  className="w-full cursor-pointer"
+                  key={`${path}_${index}`}
+                  onClick={
+                    path
+                      ? () => handleClick(path, field, type)
+                      : () => handleModal(text, field, type)
+                  }
+                >
+                  <li className="flex py-6 items-center border-t border-gray-100 last:border-b hover:bg-gray-50">
+                    <div className="flex-1 flex flex-col items-start">
+                      <p className="text-lg">{text}</p>
+                      {desc && <p className="text-sm text-gray-400">{desc}</p>}
+                    </div>
+                    <Icon name="right" className="text-3xl" />
+                  </li>
+                </button>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+      {keyword && (
+        <div>
+          <p className="text-gray-400 text-md py-4">{`${list.length}개의 결과`}</p>
+          {list.length > 0 && (
+            <ul>
+              {list.map((item, index) => {
+                const { path, text, desc, type, field } = item;
+
+                return (
+                  <Link to={path} key={`${path}_${index}`}>
+                    <li className="flex py-6 items-center border-t border-gray-100 last:border-b hover:bg-gray-50">
+                      <div className="flex-1 space-y-1">
+                        <p className="text-lg">
+                          <span>{text}</span>
+                          {desc && <span>{` : ${desc}`}</span>}
+                        </p>
+                        {type && (
+                          <p className="text-sm text-gray-400">
+                            {`[${
+                              reportsLists["reports"].filter(
+                                (r) => r.field === field
+                              )[0].text
+                            }]의 하위항목`}
+                          </p>
+                        )}
+                      </div>
+                      <Icon name="right" className="text-3xl" />
+                    </li>
+                  </Link>
+                );
+              })}
+            </ul>
+          )}
+          {list.length === 0 && (
+            <p className="text-center text-gray-400 text-lg">
+              검색결과가 없어요.
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
