@@ -1,30 +1,116 @@
-interface ModalProps {
-  region: string;
-  onClose: () => void;
-}
+import type {
+  OverlayProps,
+  ContentProps,
+  ModalRootProps,
+  HeaderProps,
+  BodyProps,
+  FooterProps,
+  ButtonProps,
+} from "./Modal.types";
+import useScrollLock from "../../../hooks/useScrollLock";
+import { createPortal } from "react-dom";
+import { twMerge } from "tailwind-merge";
 
-const Modal = ({ region, onClose }: ModalProps) => {
+const ModalRoot = ({ open, children, className }: ModalRootProps) => {
+  useScrollLock(open);
+  if (!open) return null;
+  // createPortal(children, domNode, key?)
+  return createPortal(
+    // twMerge(기본스타일, 덮어쓰기/추가스타일)
+    <div
+      className={twMerge(
+        "fixed inset-0 z-50 flex items-center justify-center",
+        className
+      )}
+    >
+      {children}
+    </div>,
+    document.body
+  );
+};
+
+const Overlay = ({ onClick, className }: OverlayProps) => {
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-10">
-      <div className="bg-white rounded-2xl p-5">
-        <h1 className="text-2xl font-bold mb-3">동네인증</h1>
-        <p>글을 작성하려면 {region}동의 동네인증이 필요해요.</p>
-        {/* gap은 부모가 flex / grid일 때만 동작 */}
-        <div className="flex gap-3 mt-4">
-          {/* flex-1: 자식이 남은 공간 균등하게 차지 */}
-          <button
-            onClick={onClose}
-            className="flex-1 bg-gray-200 rounded-md font-bold py-2  hover:bg-gray-100 cursor-pointer"
-          >
-            취소
-          </button>
-          <button className="flex-1 bg-orange-500 rounded-md font-bold py-2  text-white hover:bg-orange-300 cursor-pointer">
-            동네인증하기
-          </button>
-        </div>
-      </div>
+    <div
+      className={twMerge("fixed inset-0 bg-black/50 z-40", className)}
+      onClick={onClick}
+    ></div>
+  );
+};
+
+// Content는 오직 카드 UI 역할만, 위치 제어는 ModalRoot
+const Content = ({ children, className }: ContentProps) => {
+  return (
+    <div
+      className={twMerge(
+        "bg-white rounded-2xl p-5 shadow-lg w-full max-w-md z-50",
+        className
+      )}
+      onClick={(e) => e.stopPropagation()}
+    >
+      {children}
     </div>
   );
 };
+
+const Header = ({ title, className }: HeaderProps) => {
+  return (
+    <header className={twMerge("text-2xl font-bold mb-3", className)}>
+      {title}
+    </header>
+  );
+};
+
+const Body = ({ children, className }: BodyProps) => {
+  // 혹시 모를 외부 className 병합 및 Tailwind 충돌 방지
+  return <main className={twMerge("", className)}>{children}</main>;
+};
+
+const Footer = ({ children, className }: FooterProps) => {
+  return (
+    <footer className={twMerge("flex gap-3 mt-4 justify-end", className)}>
+      {children}
+    </footer>
+  );
+};
+
+const CancelButton = ({ children, onClick, className }: ButtonProps) => {
+  return (
+    <button
+      onClick={onClick}
+      className={twMerge(
+        "flex-1 bg-gray-200 rounded-md font-bold p-3 w-full hover:bg-gray-300 cursor-pointer whitespace-nowrap min-w-[110px]",
+        className
+      )}
+    >
+      {children}
+    </button>
+  );
+};
+
+const ConfirmButton = ({ children, onClick, className }: ButtonProps) => {
+  return (
+    <button
+      onClick={onClick}
+      className={twMerge(
+        "flex-1 bg-orange-500 rounded-md font-bold p-3 w-full text-white hover:bg-orange-600 cursor-pointer whitespace-nowrap min-w-[110px]",
+        className
+      )}
+    >
+      {children}
+    </button>
+  );
+};
+
+// Compound Component Pattern
+const Modal = Object.assign(ModalRoot, {
+  Overlay,
+  Content,
+  Header,
+  Body,
+  Footer,
+  CancelButton,
+  ConfirmButton,
+});
 
 export default Modal;

@@ -1,0 +1,68 @@
+/* 필수: react-transition-group classNames
+ * - classNames=" "slide-left" | "slide-right"
+ */
+@layer components {
+  /* SLIDE LEFT: 새 화면이 오른쪽→왼쪽 진입 */
+  .slide-left-enter {
+    @apply opacity-0 translate-x-12;
+  }
+  .slide-left-enter-active {
+    @apply opacity-100 translate-x-0 transition-all duration-700 ease-in-out;
+  }
+  .slide-left-exit {
+    @apply opacity-0 translate-x-0;
+  }
+  .slide-left-exit-active {
+    @apply opacity-0 translate-x-0;
+  }
+
+  /* SLIDE RIGHT: 새 화면이 왼쪽→오른쪽 진입 */
+  .slide-right-enter {
+    @apply opacity-0 -translate-x-12;
+  }
+  .slide-right-enter-active {
+    @apply opacity-200 translate-x-0 transition-all duration-700 ease-in-out;
+  }
+  .slide-right-exit {
+    @apply opacity-0 translate-x-0;
+  }
+  .slide-right-exit-active {
+    @apply opacity-0 translate-x-0;
+  }
+
+  /* bottom-sheet: 아래에서 위로 */
+  .bottom-sheet-enter {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  .bottom-sheet-enter-active {
+    transform: translateY(0%);
+    opacity: 1;
+    transition: transform 300ms ease-out, opacity 300ms ease-out;
+  }
+  .bottom-sheet-exit {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  .bottom-sheet-exit-active {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 300ms ease-in, opacity 300ms ease-in;
+  }
+
+  .fade-enter {
+    @apply opacity-0;
+  }
+
+  .fade-enter-active {
+    @apply opacity-100 transition-opacity duration-300 ease-out;
+  }
+
+  .fade-exit {
+    @apply opacity-100;
+  }
+
+  .fade-exit-active {
+    @apply opacity-0 transition-opacity duration-300 ease-in;
+  }
+}
