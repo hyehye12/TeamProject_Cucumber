@@ -22,10 +22,13 @@ import {
   LuCheck as check, // 체크
   LuTrash2 as trash, // 쓰레기 통
   LuSettings as setting, // 톱니바퀴
+  LuCirclePlus as circlePlus,
+  LuCircleMinus as circleMinus,
 } from "react-icons/lu";
 
 import {
   AiFillMessage as chat, // 채팅
+  AiOutlineQuestionCircle as questionCircle,
 } from "react-icons/ai";
 
 import {
@@ -102,4 +105,7 @@ export const icons = {
   radioOff,
   trash,
   setting,
+  circlePlus,
+  questionCircle,
+  circleMinus,
 };
