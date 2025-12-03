@@ -1,23 +1,24 @@
-import { Button } from "../../common";
-import { BlockUserChecker } from "../BlockUserChecker";
-import { useReportsContext } from "../context";
+import { ReportsLayout } from "../../../layout";
+import {
+  BlockUserChecker,
+  ReportsButton,
+  ReportsMainTitle,
+  useReportState,
+} from "../../../components";
 
 export const ReportsLivingAnimals = () => {
-  const { handleReport } = useReportsContext();
-
+  useReportState();
   return (
-    <div className="p-8 flex flex-col h-full">
-      <header>
-        <p className="text-2xl font-bold">생명이 있는 동물</p>
-      </header>
-      <main className="flex-1">
+    <ReportsLayout>
+      <ReportsLayout.Header>
+        <ReportsMainTitle title="생명이 있는 동물" />
+      </ReportsLayout.Header>
+      <ReportsLayout.Main>
         <BlockUserChecker />
-      </main>
-      <footer>
-        <Button onClick={handleReport} className="w-full">
-          신고하기
-        </Button>
-      </footer>
-    </div>
+      </ReportsLayout.Main>
+      <ReportsLayout.Footer>
+        <ReportsButton />
+      </ReportsLayout.Footer>
+    </ReportsLayout>
   );
 };

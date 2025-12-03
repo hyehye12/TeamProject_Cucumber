@@ -1,15 +1,19 @@
-import { Button } from "../../common";
-import { BlockUserChecker } from "../BlockUserChecker";
-import { useReportsContext } from "../context";
+import { ReportsLayout } from "../../../layout";
+import {
+  BlockUserChecker,
+  ReportsButton,
+  ReportsMainTitle,
+  useReportState,
+} from "../../../components";
 
 export const ReportsTrademarkInfringement = () => {
-  const { handleReport } = useReportsContext();
+  useReportState();
   return (
-    <div className="p-8 flex flex-col h-full">
-      <header>
-        <p className="text-2xl font-bold mb-8">상표권 침해 물품</p>
-      </header>
-      <main className="flex-1 space-y-8">
+    <ReportsLayout>
+      <ReportsLayout.Header>
+        <ReportsMainTitle title="상표권 침해 물품 유해물" />
+      </ReportsLayout.Header>
+      <ReportsLayout.Main>
         <p>
           거래 상대방이 게시글이나 채팅에서 가품/이미테이션을 거래한 경우
           판매금지 물품 판매 사유로 신고할 수 있습니다.
@@ -25,12 +29,10 @@ export const ReportsTrademarkInfringement = () => {
         {/* 링크로 수정해야 함 */}
         <p>가품 이미테이션은 판매할 수 없어요</p>
         <BlockUserChecker />
-      </main>
-      <footer>
-        <Button onClick={handleReport} className="w-full">
-          신고하기
-        </Button>
-      </footer>
-    </div>
+      </ReportsLayout.Main>
+      <ReportsLayout.Footer>
+        <ReportsButton />
+      </ReportsLayout.Footer>
+    </ReportsLayout>
   );
 };

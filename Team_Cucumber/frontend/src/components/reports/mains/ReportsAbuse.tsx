@@ -5,21 +5,20 @@ import {
   ReportsMainTitle,
   Textarea,
   useReportsContext,
+  useReportState,
 } from "../..";
-import { useEffect, type ChangeEvent } from "react";
+import { type ChangeEvent } from "react";
 
 const ReportsAbuse = () => {
-  const { handleReport, reportText, setReportText } = useReportsContext();
+  const { reportInfo, setReportInfo } = useReportsContext();
+
+  useReportState();
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
 
-    setReportText({ type: "users", text });
+    setReportInfo((prev) => ({ ...prev, report_text: text }));
   };
-
-  useEffect(() => {
-    setReportText({ type: "users", text: "" });
-  }, []);
 
   return (
     <ReportsLayout>
@@ -43,10 +42,10 @@ const ReportsAbuse = () => {
           <Textarea
             placeholder="신고내용을 입력해주세요.(최대 300자)"
             className="border border-gray-200 mb-0"
-            value={reportText?.text}
+            value={reportInfo?.report_text}
             onChange={handleChange}
           />
-          <p className="text-right text-gray-400">{`${reportText?.text.length}/300`}</p>
+          <p className="text-right text-gray-400">{`${reportInfo?.report_text.length}/300`}</p>
         </div>
         <BlockUserChecker />
         <p className="text-gray-500">
@@ -56,7 +55,7 @@ const ReportsAbuse = () => {
         <p className="text-gray-400">{`('나의 당근 > 설정 > 차단 사용자 관리'에서 취소할 수 있습니다.)`}</p>
       </ReportsLayout.Main>
       <ReportsLayout.Footer>
-        <ReportsButton onClick={handleReport} />
+        <ReportsButton disabled={!reportInfo.report_text} />
       </ReportsLayout.Footer>
     </ReportsLayout>
   );

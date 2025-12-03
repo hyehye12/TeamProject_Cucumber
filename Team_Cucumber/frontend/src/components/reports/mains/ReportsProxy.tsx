@@ -1,29 +1,31 @@
-import { useEffect, type ChangeEvent } from "react";
-import { Button, Textarea } from "../../common";
-import { BlockUserChecker } from "../BlockUserChecker";
+import { type ChangeEvent } from "react";
+import {
+  BlockUserChecker,
+  ReportsButton,
+  ReportsMainTitle,
+  Textarea,
+  useReportState,
+} from "../../../components";
 import { useReportsContext } from "../context";
+import { ReportsLayout } from "../../../layout";
 
 export const ReportsProxy = () => {
-  const { handleReport, reportText, setReportText } = useReportsContext();
+  const { reportInfo, setReportInfo } = useReportsContext();
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
 
-    setReportText({ type: "proxy", text });
+    setReportInfo((prev) => ({ ...prev, report_text: text }));
   };
 
-  useEffect(() => {
-    setReportText({ type: "proxy", text: "" });
-  }, []);
+  useReportState();
 
   return (
-    <div className="p-8 flex flex-col h-full">
-      <header>
-        <p className="text-2xl font-bold">
-          대리 결제(대출)/구매/판매 행위를 해요
-        </p>
-      </header>
-      <main className="flex-1 space-y-8 mt-8">
+    <ReportsLayout>
+      <ReportsLayout.Header>
+        <ReportsMainTitle title="대리 결제(대출)/구매/판매 행위를 해요" />
+      </ReportsLayout.Header>
+      <ReportsLayout.Main>
         <p>
           대리 결제(대출)/구매/판매하는 행위를 하는 경우, 해당 신고 항목으로
           신고할 수 있어요.
@@ -38,17 +40,15 @@ export const ReportsProxy = () => {
         <Textarea
           placeholder="신고내용을 입력해주세요.(최대 300자)"
           className="border border-gray-200 mb-0"
-          value={reportText?.text}
+          value={reportInfo?.report_text}
           onChange={handleChange}
         />
-        <p className="text-right text-gray-400">{`${reportText?.text.length}/300`}</p>
+        <p className="text-right text-gray-400">{`${reportInfo?.report_text.length}/300`}</p>
         <BlockUserChecker />
-      </main>
-      <footer>
-        <Button onClick={handleReport} className="w-full">
-          신고하기
-        </Button>
-      </footer>
-    </div>
+      </ReportsLayout.Main>
+      <ReportsLayout.Footer>
+        <ReportsButton disabled={!reportInfo.report_text} />
+      </ReportsLayout.Footer>
+    </ReportsLayout>
   );
 };

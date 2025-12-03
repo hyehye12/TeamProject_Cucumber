@@ -1,10 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { reportsLists } from "../../data";
 import { useReportsContext } from "./context";
 import { Icon } from "../common";
 
 export const ReportsList = () => {
-  const { keyword, list } = useReportsContext();
+  const navigate = useNavigate();
+  const { keyword, list, onOpen, setTitle, setReportInfo } =
+    useReportsContext();
+
+  const handleClick = (path: string, field?: string, type?: string) => {
+    navigate(path, { state: { field, type } });
+  };
+
+  const handleModal = (title: string, field?: string, type?: string) => {
+    setTitle(title);
+    setReportInfo((prev) => ({
+      ...prev,
+      report_field_id: field,
+      report_type_id: type,
+    }));
+    onOpen();
+  };
 
   return (
     <div>
@@ -15,17 +31,25 @@ export const ReportsList = () => {
           </p>
           <ul>
             {list.map((item, index) => {
-              const { path, text, desc } = item;
+              const { path, text, desc, field, type } = item;
               return (
-                <Link to={path} key={`${path}_${index}`}>
+                <button
+                  className="w-full cursor-pointer"
+                  key={`${path}_${index}`}
+                  onClick={
+                    path
+                      ? () => handleClick(path, field, type)
+                      : () => handleModal(text, field, type)
+                  }
+                >
                   <li className="flex py-6 items-center border-t border-gray-100 last:border-b hover:bg-gray-50">
-                    <div className="flex-1">
+                    <div className="flex-1 flex flex-col items-start">
                       <p className="text-lg">{text}</p>
                       {desc && <p className="text-sm text-gray-400">{desc}</p>}
                     </div>
                     <Icon name="right" className="text-3xl" />
                   </li>
-                </Link>
+                </button>
               );
             })}
           </ul>
@@ -37,7 +61,8 @@ export const ReportsList = () => {
           {list.length > 0 && (
             <ul>
               {list.map((item, index) => {
-                const { path, text, desc, type } = item;
+                const { path, text, desc, type, field } = item;
+
                 return (
                   <Link to={path} key={`${path}_${index}`}>
                     <li className="flex py-6 items-center border-t border-gray-100 last:border-b hover:bg-gray-50">
@@ -50,7 +75,7 @@ export const ReportsList = () => {
                           <p className="text-sm text-gray-400">
                             {`[${
                               reportsLists["reports"].filter(
-                                (r) => r.path === type
+                                (r) => r.field === field
                               )[0].text
                             }]의 하위항목`}
                           </p>

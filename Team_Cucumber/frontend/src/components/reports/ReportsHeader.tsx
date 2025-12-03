@@ -4,25 +4,26 @@ import {
   SearchButton,
   useReportsContext,
   ReportsCancelButton,
+  Header,
 } from "../../components";
 
 export const ReportsHeader = () => {
-  const { isSearchOn } = useReportsContext();
+  const { isSearchOn, keyword, list } = useReportsContext();
 
   return (
-    <header className="flex justify-between items-center gap-4">
-      <div className="flex-1 flex items-center relative">
-        {isSearchOn ? <ReportsSearchInput /> : <PrevButton className="" />}
-      </div>
-      {
-        <div className="flex items-center">
-          {isSearchOn ? (
-            <ReportsCancelButton>취소</ReportsCancelButton>
-          ) : (
-            <SearchButton />
-          )}
-        </div>
-      }
-    </header>
+    <Header className="mx-4">
+      <Header.Left>
+        {list && isSearchOn ? <ReportsSearchInput /> : <PrevButton />}
+      </Header.Left>
+      <Header.Right>
+        {list.length === 0 && !keyword ? (
+          <></>
+        ) : isSearchOn ? (
+          <ReportsCancelButton>취소</ReportsCancelButton>
+        ) : (
+          <SearchButton />
+        )}
+      </Header.Right>
+    </Header>
   );
 };

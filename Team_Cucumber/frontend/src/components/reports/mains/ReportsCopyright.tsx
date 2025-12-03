@@ -2,8 +2,10 @@ import { ReportsLayout } from "../../../layout";
 import { BlockUserChecker } from "../BlockUserChecker";
 import { ReportsButton } from "../ReportsButton";
 import { ReportsMainTitle } from "../ReportsMainTitle";
+import { useReportState } from "../useReportState";
 
 export const ReportsCopyright = () => {
+  useReportState();
   return (
     <ReportsLayout>
       <ReportsLayout.Header>

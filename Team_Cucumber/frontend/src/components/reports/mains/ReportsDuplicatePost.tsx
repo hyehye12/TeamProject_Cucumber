@@ -1,7 +1,9 @@
 import { ReportsLayout } from "../../../layout";
-import { ReportsButton, ReportsMainTitle } from "../..";
+import { ReportsButton, ReportsMainTitle, useReportState } from "../..";
 
 const ReportsDuplicatePost = () => {
+  useReportState();
+
   return (
     <ReportsLayout>
       <ReportsLayout.Header>

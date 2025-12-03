@@ -1,16 +1,17 @@
-import { Button } from "../../common";
-import { BlockUserChecker } from "../BlockUserChecker";
-import { useReportsContext } from "../context";
+import { ReportsLayout } from "../../../layout";
+import {
+  BlockUserChecker,
+  ReportsButton,
+  ReportsMainTitle,
+} from "../../../components";
 
 export const ReportsProfessional = () => {
-  const { handleReport } = useReportsContext();
-
   return (
-    <div className="p-8 flex flex-col h-full">
-      <header>
-        <p className="text-2xl font-bold">전문 판매업자 같아요</p>
-      </header>
-      <main className="flex-1">
+    <ReportsLayout>
+      <ReportsLayout.Header>
+        <ReportsMainTitle title="전문 판매업자 같아요" />
+      </ReportsLayout.Header>
+      <ReportsLayout.Main>
         <ul className="list-disc ml-10">
           <li className="my-4">
             동일/유사한 제품을 단기간에 많이 판매하는 경우
@@ -34,12 +35,10 @@ export const ReportsProfessional = () => {
           </p>
         </div>
         <BlockUserChecker />
-      </main>
-      <footer>
-        <Button className="w-full" onClick={handleReport}>
-          신고하기
-        </Button>
-      </footer>
-    </div>
+      </ReportsLayout.Main>
+      <ReportsLayout.Footer>
+        <ReportsButton />
+      </ReportsLayout.Footer>
+    </ReportsLayout>
   );
 };

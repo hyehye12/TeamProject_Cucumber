@@ -4,6 +4,7 @@ import {
   ChatroomItem,
   ReportsButton,
   ReportsMainTitle,
+  useReportState,
 } from "../..";
 import type { ReportChatroomType } from "../../../types";
 import { useState } from "react";
@@ -37,6 +38,8 @@ const userChatroomList: ReportChatroomType[] = [
 
 const ReportsDispute = () => {
   const [selected, setSelected] = useState("");
+
+  useReportState();
 
   const handleSelection = (id: string) => {
     setSelected(id);

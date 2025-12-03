@@ -1,7 +1,13 @@
 import { ReportsLayout } from "../../../layout";
-import { ReportsButton, ReportsMainTitle } from "../..";
+import {
+  ReportsButton,
+  ReportsMainTitle,
+  useReportState,
+} from "../../../components";
 
 const ReportsHealthGuideline = () => {
+  useReportState();
+
   return (
     <ReportsLayout>
       <ReportsLayout.Header>

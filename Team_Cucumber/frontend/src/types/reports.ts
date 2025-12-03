@@ -1,11 +1,6 @@
-import type { ButtonHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes, Dispatch, SetStateAction } from "react";
 
 export type ReactButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
-
-export interface ReportText {
-  type: string;
-  text: string;
-}
 
 export type ReportsContextType = {
   keyword: string;
@@ -19,21 +14,28 @@ export type ReportsContextType = {
   setIsReported: (isReported: boolean) => void;
   handleReport: () => void;
   list: ReportsListItemType[];
-  content?: any;
-  reportText?: ReportText;
-  setReportText: (reportText: ReportText) => void;
+  reportInfo: ReportInfo;
+  setReportInfo: Dispatch<SetStateAction<ReportInfo>>;
+  isModalOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  title: string;
+  setTitle: (title: string) => void;
+  isLoading: boolean;
 };
 
 export interface ReportsPathType {
   category?: string;
   detail?: string;
+  deeper?: string;
 }
 
 export interface ReportsListItemType {
   path: string;
   text: string;
   desc?: string;
-  type?: ReportsCategoryType;
+  field?: string;
+  type?: string;
   isBlockUser?: boolean;
   canReport?: boolean;
 }
@@ -44,7 +46,9 @@ export type ReportsCategoryType =
   | "frauds"
   | "proxy"
   | "inappropriates"
-  | "users";
+  | "users"
+  | "others"
+  | "dispute";
 
 export interface ReportChatroomType {
   id: string;
@@ -53,4 +57,12 @@ export interface ReportChatroomType {
     name: string;
   };
   title: string;
+}
+
+export interface ReportInfo {
+  opponent_id?: string;
+  product_id?: string;
+  report_text: string;
+  report_field_id?: string;
+  report_type_id?: string;
 }

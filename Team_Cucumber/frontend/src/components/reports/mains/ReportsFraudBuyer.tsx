@@ -1,3 +1,4 @@
+import { type ChangeEvent } from "react";
 import { ReportsLayout } from "../../../layout";
 import {
   BlockUserChecker,
@@ -5,21 +6,19 @@ import {
   ReportsMainTitle,
   Textarea,
   useReportsContext,
-} from "../..";
-import { useEffect, type ChangeEvent } from "react";
+  useReportState,
+} from "../../../components";
 
 const ReportsFraudBuyer = () => {
-  const { handleReport, reportText, setReportText } = useReportsContext();
+  const { reportInfo, setReportInfo } = useReportsContext();
+
+  useReportState();
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
 
-    setReportText({ type: "fraud", text });
+    setReportInfo((prev) => ({ ...prev, report_text: text }));
   };
-
-  useEffect(() => {
-    setReportText({ type: "fraud", text: "" });
-  }, []);
 
   return (
     <ReportsLayout>
@@ -56,15 +55,15 @@ const ReportsFraudBuyer = () => {
           <Textarea
             placeholder="신고내용을 입력해주세요.(최대 300자)"
             className="border border-gray-200 mb-0"
-            value={reportText?.text}
+            value={reportInfo?.report_text}
             onChange={handleChange}
           />
-          <p className="text-right text-gray-400">{`${reportText?.text.length}/300`}</p>
+          <p className="text-right text-gray-400">{`${reportInfo?.report_text.length}/300`}</p>
         </div>
         <BlockUserChecker />
       </ReportsLayout.Main>
       <ReportsLayout.Footer>
-        <ReportsButton onClick={handleReport} />
+        <ReportsButton disabled={!reportInfo.report_text} />
       </ReportsLayout.Footer>
     </ReportsLayout>
   );
