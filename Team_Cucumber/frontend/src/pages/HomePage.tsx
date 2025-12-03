@@ -2,10 +2,18 @@ import { Header, ProductCard } from "@/components";
 import { Icon } from "@/components";
 import { Button } from "@/components";
 import Modal from "@/components/common/Modal/Modal";
+import BottomSheet from "@/components/common/BottomSheet/BottomSheet";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const [isWriteModalOpen, setIsWriteModalOPen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  // location.pathname: 현재 브라우저 주소창 경로
+  const isActive = (path: string) => location.pathname === path;
+
+  const [isWriteModalOpen, setIsWriteModalOpen] = useState(false);
+  const [isBottomSheetOpen, setisBottomSheetOpen] = useState(false);
 
   const mockItems = [
     {
@@ -59,11 +67,20 @@ const HomePage = () => {
       chats: 3,
       likes: 10,
     },
+    {
+      id: "6",
+      title: "안녕하세요.물건사라",
+      price: "450,000",
+      location: "성수동",
+      timeAgo: "5분 전",
+      imageUrl: "../../../public/cafe.png",
+      chats: 3,
+      likes: 10,
+    },
   ];
 
   const categories = [
     { id: "all", label: "전체", active: true },
-    { id: "tesla", label: "테슬라 0원", badge: true },
     { id: "trade", label: "중고거래" },
     { id: "new", label: "방금 전" },
   ];
@@ -96,7 +113,11 @@ const HomePage = () => {
         </Header.Left>
         <Header.Right>
           <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
-            <Icon name="search" className="text-2xl" />
+            <Icon
+              name="search"
+              className="text-2xl"
+              onClick={() => navigate("/search")}
+            />
           </Button>
           <Button className="bg-transparent text-black rounded-full active:bg-gray-200 hover:bg-transparent">
             <Icon name="bellOutline" className="text-2xl" />
@@ -125,7 +146,7 @@ const HomePage = () => {
         {mockItems.map((item) => (
           <ProductCard
             key={item.id}
-            className="relative cursor-pointer flex gap-3 py-3 border-b border-gray-100 hover:shadow-md hover:bg-gray-200 p-4 rounded-lg"
+            className="relative flex gap-3 py-3 border-b border-gray-100 hover:shadow-md hover:bg-gray-200 p-4 rounded-lg"
             onClick={() => {
               console.log("상세보기", item.id);
             }}
@@ -166,11 +187,14 @@ const HomePage = () => {
                 className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
                 onClick={(e) => {
                   e.stopPropagation(); // 카드 onClick 안 타게 막기
-                  console.log("더보기 클릭", item.id);
-                  // TODO: 여기서 메뉴 열기
+                  setisBottomSheetOpen(true);
                 }}
               >
-                <Icon name="verticalDots" />
+                <Icon
+                  name="verticalDots"
+                  onClick={() => setisBottomSheetOpen(true)}
+                  className="cursor-pointer"
+                />
               </button>
             </div>
           </ProductCard>
@@ -179,17 +203,18 @@ const HomePage = () => {
 
       <Button
         className="fixed bottom-25 rounded-full shadow-lg right-7 flex"
-        onClick={() => setIsWriteModalOPen(true)}
+        onClick={() => setIsWriteModalOpen(true)}
       >
         <Icon name="plus" className="text-xl" />
         글쓰기
       </Button>
 
+      {/* 글쓰기 모달 */}
       <Modal
         open={isWriteModalOpen}
         className="items-end justify-end pr-7 pb-50"
       >
-        <Modal.Overlay onClick={() => setIsWriteModalOPen(false)} />
+        <Modal.Overlay onClick={() => setIsWriteModalOpen(false)} />
         <Modal.Content className="rounded-3xl p-4 w-auto">
           <div>
             {myItemsMenuItem.map((item) => (
@@ -197,7 +222,7 @@ const HomePage = () => {
                 key={item.id}
                 onClick={() => {
                   item.onClick();
-                  setIsWriteModalOPen(false);
+                  setIsWriteModalOpen(false);
                 }}
                 className="flex items-center cursor-pointer"
               >
@@ -208,27 +233,90 @@ const HomePage = () => {
               </button>
             ))}
           </div>
-
           {/* 모달 닫기 버튼 */}
           <button
-            onClick={() => setIsWriteModalOPen(false)}
+            onClick={() => setIsWriteModalOpen(false)}
             className="absolute bg-white rounded-full w-20 h-20 flex justify-center items-center cursor-pointer right-7 bottom-25"
           >
             <Icon name="close" className="text-4xl" />
           </button>
         </Modal.Content>
       </Modal>
+
+      {/* 바텀시트 */}
+      <BottomSheet
+        open={isBottomSheetOpen}
+        onClose={() => setisBottomSheetOpen(false)}
+        className="bg-gray-100"
+      >
+        <Button className="rounded-b-none border-b-2 border-b-gray-100 bg-white text-black hover:bg-gray-300 w-full flex items-center gap-2">
+          <Icon name="circlePlus" className="text-xl" /> 관심있음
+        </Button>
+        <Button className="rounded-t-none mb-3 bg-white text-black hover:bg-gray-300 w-full flex items-center gap-2">
+          <Icon name="circleMinus" className="text-xl" />
+          관심없음
+        </Button>
+        <Button className="rounded-b-none border-b-2 border-b-gray-100 bg-white text-black hover:bg-gray-300 w-full flex">
+          <Icon name="eyeOff" className="text-xl pr-2" />이 글 숨기기
+        </Button>
+        <Button className="rounded-none border-b-2 border-b-gray-100 bg-white text-black hover:bg-gray-300 w-full flex">
+          <Icon name="questionCircle" className="text-xl pr-2" />
+          게시글 노출 기준
+        </Button>
+        <Button className="rounded-t-none mb-3 bg-white text-red-500 hover:bg-gray-300 w-full flex">
+          <Icon name="flagOutline" className="text-xl pr-2" />
+          신고하기
+        </Button>
+        <Button
+          className="bg-white text-black hover:bg-gray-300 w-full"
+          onClick={() => setisBottomSheetOpen(false)}
+        >
+          닫기
+        </Button>
+      </BottomSheet>
+
       <footer className="flex justify-around border-t border-gray-200">
-        <Button className="bg-transparent text-gray-400 rounded-full active:bg-gray-200 hover:bg-transparent flex  flex-col items-center">
-          <Icon name="homeFill" className="text-3xl " />홈
+        {/* 홈 버튼 */}
+        <Button
+          className="bg-transparent text-gray-400 rounded-full hover:bg-transparent flex flex-col items-center"
+          onClick={() => navigate("/home")}
+        >
+          <Icon
+            name="homeFill"
+            className={`text-3xl ${
+              isActive("/home") ? "text-black" : "text-gray-400"
+            }`}
+          />
+          홈
         </Button>
-        <Button className="bg-transparent text-gray-400 rounded-full active:bg-gray-200 hover:bg-transparent flex  flex-col items-center">
-          <Icon name="marker" className="text-3xl" /> 동네지도
+
+        {/* 동네지도 버튼 */}
+        <Button
+          className="bg-transparent text-gray-400 rounded-full hover:bg-transparent flex  flex-col items-center"
+          onClick={() => navigate("/")}
+        >
+          <Icon
+            name="marker"
+            className={`text-3xl ${
+              isActive("/") ? "text-black" : "text-gray-400"
+            }`}
+          />
+          동네지도
         </Button>
-        <Button className="bg-transparent text-gray-400 rounded-full active:bg-gray-200 hover:bg-transparent flex  flex-col items-center">
+
+        {/* 채팅 버튼 */}
+        <Button
+          className="bg-transparent text-gray-400 rounded-full hover:bg-transparent flex  flex-col items-center"
+          onClick={() => navigate("/")}
+        >
           <Icon name="chat" className="text-3xl" /> 채팅
         </Button>
-        <Button className="bg-transparent text-gray-400 rounded-full active:bg-gray-200 hover:bg-transparent flex  flex-col items-center">
+
+        {/* 나의 당근 버튼 */}
+        <Button
+          className="bg-transparent text-gray-400 rounded-full hover:bg-transparent flex  flex-col items-center"
+          onClick={() => navigate("/")}
+        >
           <Icon name="user" className="text-3xl" /> 나의 당근
         </Button>
       </footer>

@@ -14,25 +14,33 @@ import { twMerge } from "tailwind-merge";
 const ModalRoot = ({ open, children, className }: ModalRootProps) => {
   useScrollLock(open);
   if (!open) return null;
+
+  // rootElement의 타입: HTMLElement | null
+  const rootElement = document.getElementById("root");
+
+  // 타입스크립트 오류 방지 코드
+  // rootElement의 타입: HTMLElement (null 제거됨)
+  if (!rootElement) return null;
+
   // createPortal(children, domNode, key?)
   return createPortal(
     // twMerge(기본스타일, 덮어쓰기/추가스타일)
     <div
       className={twMerge(
-        "fixed inset-0 z-50 flex items-center justify-center",
+        "absolute inset-0 z-50 flex items-center justify-center",
         className
       )}
     >
       {children}
     </div>,
-    document.body
+    rootElement // 타입 안전: HTMLElement만 전달
   );
 };
 
 const Overlay = ({ onClick, className }: OverlayProps) => {
   return (
     <div
-      className={twMerge("fixed inset-0 bg-black/50 z-40", className)}
+      className={twMerge("absolute inset-0 bg-black/50 z-40", className)}
       onClick={onClick}
     ></div>
   );
@@ -113,4 +121,6 @@ const Modal = Object.assign(ModalRoot, {
   ConfirmButton,
 });
 
+// ccp는 export default가 적합
+// 예: Modal.Header ->어떤 컴포넌트의 Header인지 명확
 export default Modal;

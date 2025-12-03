@@ -6,22 +6,28 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  position: relative;
+  overflow: hidden;
 }
 
 /* 높이 100% 적용하기 위한 코드 */
 html {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
   max-width: 768px;
   margin: auto;
   height: 100%;
-  overflow-x: hidden; /* 가로 스크롤 방지 */
+  /* overflow-x: hidden; */
+  position: relative;
+  overflow: hidden;
 }
 
 #root {
   height: 100%;
+  overflow: hidden;
 }
 
 @import "./components\common\PageTransition\page_transition.css";
