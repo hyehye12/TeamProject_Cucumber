@@ -4,6 +4,7 @@ import { ProductCard, ToggleButton } from "../../components";
 import { Icon } from "../../components";
 import BottomSheet from "../../components/common/BottomSheet/BottomSheet";
 import Button from "../../components/common/Button/Button";
+import { productMockItems } from "../../data";
 
 export const TestHeminPage = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -12,19 +13,6 @@ export const TestHeminPage = () => {
 
   const handleOpenDefault = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const mockItems = [
-    {
-      id: "1",
-      title: "안녕하세요.물건사라",
-      price: "450,000원",
-      location: "성수동",
-      timeAgo: "5분 전",
-      imageUrl: "../../../public/cafe.png",
-      chats: 3,
-      likes: 10,
-    },
-  ];
 
   return (
     <div>
@@ -42,7 +30,7 @@ export const TestHeminPage = () => {
       <br />
       {/*메인에 있는 기본 상품 카드*/}
       <div className="px-4">
-        {mockItems.map((item) => (
+        {productMockItems.map((item) => (
           <ProductCard
             key={item.id}
             className="relative flex gap-3 py-3 border-b border-gray-100 hover:shadow-md hover:bg-gray-200 p-4 rounded-lg"
@@ -99,7 +87,7 @@ export const TestHeminPage = () => {
       <br />
       {/*판매물품, 관심있을만한 상품 */}
       <div className="px-5">
-        {mockItems.map((item) => (
+        {productMockItems.map((item) => (
           <ProductCard
             key={item.id}
             className="flex flex-col w-36 h-56 items-center gap-3 py-3 border-b border-gray-100 hover:shadow-md hover:bg-gray-200 p-4 rounded-lg "

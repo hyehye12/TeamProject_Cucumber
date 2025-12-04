@@ -1,5 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { IconsPage, LandingPage, ReportsPage, TestPage } from "../pages";
+import {
+  IconsPage,
+  LandingPage,
+  ReportsPage,
+  MyCucumberPage,
+  TestPage,
+} from "../pages";
 import { TestHeminPage, TestNaraPage, TestJoowonPage } from "../pages";
 import { PageTransition } from "../components/common/PageTransition/PageTransition";
 import {
@@ -40,6 +46,7 @@ import ReportsProfileImage from "../components/reports/mains/ReportsProfileImage
 import ReportsNickname from "../components/reports/mains/ReportsNickname";
 import ReportsPolitics from "../components/reports/mains/ReportsPolitics";
 import ReportsUnder14 from "../components/reports/mains/ReportsUnder14";
+import { LikeList } from "../components/mypage/main";
 
 export const AppRoutes = () => {
   return (
@@ -54,6 +61,8 @@ export const AppRoutes = () => {
               <Route path="Joowon" element={<TestJoowonPage />} />
               <Route path="icons" element={<IconsPage />} />
             </Route>
+            <Route path="/mypage" element={<MyCucumberPage />} />
+            <Route path="/mypage/likelist" element={<LikeList />} />
             <Route path="/reports" element={<ReportsPage />}>
               <Route index element={<ReportsMain />} />
               <Route path=":category" element={<ReportsMain />}></Route>
