@@ -30,9 +30,12 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
   // 페이지 스크롤 잠금
   useScrollLock(open);
 
+  const rootElement = document.getElementById("root");
+  if (!rootElement) return null;
+
   // 포탈로 body에 바로 렌더링
   return createPortal(
-    <div className="fixed inset-0 z-50 flex flex-col justify-end pointer-events-none">
+    <div className="absolute inset-0 z-50 flex flex-col justify-end pointer-events-none">
       {/*  Overlay: 기존 Modal.Overlay 재사용 - 이건 그냥 딱 나타나기만 하고 안 올라옴 */}
       {open && (
         <Modal.Overlay
@@ -57,7 +60,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
         </div>
       </SheetTransition>
     </div>,
-    document.body
+    rootElement
   );
 };
 

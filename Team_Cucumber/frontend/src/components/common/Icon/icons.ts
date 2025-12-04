@@ -26,10 +26,13 @@ import {
   LuBookMarked as bookMarked, // 북마크
   LuNotebookText as notebook, // 노트
   LuTarget as target, // 타겟
+  LuCirclePlus as circlePlus,
+  LuCircleMinus as circleMinus,
 } from "react-icons/lu";
 
 import {
   AiFillMessage as chat, // 채팅
+  AiOutlineQuestionCircle as questionCircle,
 } from "react-icons/ai";
 
 import {
@@ -141,4 +144,7 @@ export const icons = {
   infoCircle,
   carrot,
   paperPlane,
+  circlePlus,
+  questionCircle,
+  circleMinus,
 };

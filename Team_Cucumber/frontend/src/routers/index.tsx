@@ -47,6 +47,10 @@ import ReportsNickname from "../components/reports/mains/ReportsNickname";
 import ReportsPolitics from "../components/reports/mains/ReportsPolitics";
 import ReportsUnder14 from "../components/reports/mains/ReportsUnder14";
 import { LikeList } from "../components/mypage/main";
+import WelcomePage from "../pages/WelcomePage";
+import LocationPage from "@/pages/LocationPage";
+import LoginPage from "@/pages/LoginPage";
+import HomePage from "@/pages/HomePage";
 
 export const AppRoutes = () => {
   return (
@@ -55,6 +59,8 @@ export const AppRoutes = () => {
         {(fixedLocation) => (
           <Routes location={fixedLocation}>
             <Route path="/" element={<LandingPage />} />
+
+            {/* 테스트 */}
             <Route path="/test" element={<TestPage />}>
               <Route path="Hemin" element={<TestHeminPage />} />
               <Route path="Nara" element={<TestNaraPage />} />
@@ -63,6 +69,19 @@ export const AppRoutes = () => {
             </Route>
             <Route path="/mypage" element={<MyCucumberPage />} />
             <Route path="/mypage/likelist" element={<LikeList />} />
+
+            {/* 시작화면 */}
+            <Route path="/welcome" element={<WelcomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/home" element={<HomePage />} />
+
+            {/* 회원가입 */}
+            <Route path="/signup/location" element={<LocationPage />} />
+            {/* <Route path="/signup/verification" element={<VerificationPage />} />
+            <Route path="/signup/terms" element={<TermsPage />} />
+            <Route path="/signup/profile" element={<ProfilePage />} /> */}
+
+            {/* 신고 */}
             <Route path="/reports" element={<ReportsPage />}>
               <Route index element={<ReportsMain />} />
               <Route path=":category" element={<ReportsMain />}></Route>
