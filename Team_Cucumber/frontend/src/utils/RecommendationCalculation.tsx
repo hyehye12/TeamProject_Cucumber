@@ -1,4 +1,4 @@
-import type { Product } from "../types";
+import type { Product } from "../types/mypage";
 
 {
   /*제목에서 키워드 추출*/
@@ -31,8 +31,6 @@ export const getRecommendedProducts = (
 
   const likedTags = new Set<string>();
   const likedCategories = new Set<string>();
-  const totalPrice = likedProducts.reduce((sum, p) => sum + p.price, 0);
-  const avgPrice = totalPrice / likedProducts.length;
 
   likedProducts.forEach((product) => {
     if (product.tags.length > 0) {
@@ -63,19 +61,6 @@ export const getRecommendedProducts = (
           score += 2;
         }
       });
-
-      const priceDiff = Math.abs(product.price - avgPrice);
-      if (priceDiff < 3000) {
-        score += 3;
-      } else if (priceDiff < 5000) {
-        score += 2;
-      } else if (priceDiff < 10000) {
-        score += 1;
-      }
-
-      if (score <= 10) {
-        score += (product.likeCount || 0) * 0.05;
-      }
 
       return { product, score };
     })
