@@ -90,7 +90,7 @@ const LoginPage = () => {
       <div className="flex items-center px-5 py-4">
         <button
           onClick={() => (step === "phone" ? navigate(-1) : setStep("phone"))}
-          className="p-2"
+          className="p-2 cursor-pointer"
         >
           <Icon name="left" className="text-2xl text-black" />
         </button>

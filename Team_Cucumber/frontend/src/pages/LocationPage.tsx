@@ -2,8 +2,10 @@ import { Header } from "@/components";
 import { Button } from "@/components";
 import { Icon } from "@/components";
 import { useLocationStore } from "@/stores/useLocationStore";
+import { useAuthStore } from "@/stores/useAuthStore";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "@/components";
 
 const LocationPage = () => {
   const navigate = useNavigate();
@@ -21,9 +23,27 @@ const LocationPage = () => {
     generateRandomLocations,
   } = useLocationStore();
 
+  const { setLocation } = useAuthStore();
+
   useEffect(() => {
     loadInitialData();
   }, [loadInitialData]);
+
+  // 위치 선택 핸들러
+  const handleLocationSelect = (loc: any) => {
+    // 전체 주소 생성
+    const fullAddress = loc.parentName
+      ? `${loc.parentName} ${loc.name}`
+      : loc.name;
+
+    // AuthStore에 위치 저장
+    setLocation(fullAddress);
+
+    console.log("선택된 위치:", fullAddress);
+
+    // 이전 페이지로 이동
+    navigate(-1);
+  };
 
   return (
     <div className="flex flex-col h-screen">
@@ -49,38 +69,100 @@ const LocationPage = () => {
 
       {/* 로딩 */}
       {isLoading && (
-        <div>
-          <div>
-            <div></div>
-            <p>로딩중</p>
-          </div>
+        <div className="flex flex-1 flex-col items-center mt-20">
+          <Spinner />
         </div>
       )}
 
       {/* 에러 */}
       {error && (
-        <div>
-          <p>{error}</p>
-          <button onClick={loadInitialData}>다시시도</button>
+        <div className="text-center mt-10">
+          <p className="text-red-500 mb-3">{error}</p>
+          <button onClick={loadInitialData} className="text-blue-500 underline">
+            다시 시도
+          </button>
         </div>
       )}
 
       {/* 검색결과 */}
       {!isLoading && searchTerm && searchResults.length > 0 && (
-        <div>
-          {searchResults.map((loc, i) => (
-            <div key={i} onClick={() => console.log("선택된 위치", loc)}>
-              <p>{loc.name}</p>
-              <p>{loc.level}</p>
-            </div>
-          ))}
+        <div className="w-[90%] mx-auto mt-5 overflow-y-auto">
+          <h3 className="font-bold mb-3 text-lg">'{searchTerm}' 검색 결과</h3>
+          <br></br>
+
+          {(() => {
+            // 시/군/구별로 그룹핑
+            const grouped = searchResults.reduce((acc, loc) => {
+              // 읍면동 레벨인 경우
+              if (loc.level === "eupmyeondong" && loc.parentName) {
+                const key = loc.parentName; // "서울특별시 강동구"
+                if (!acc[key]) {
+                  acc[key] = [];
+                }
+                acc[key].push(loc.name);
+              }
+              // 시군구나 시도 레벨인 경우
+              else {
+                const key = loc.parentName
+                  ? `${loc.parentName} ${loc.name}`
+                  : loc.name;
+                if (!acc[key]) {
+                  acc[key] = [];
+                }
+              }
+              return acc;
+            }, {} as Record<string, string[]>);
+
+            return Object.entries(grouped).map(([region, dongs], i) => (
+              <div key={i} className="mb-8">
+                {/* 제목: 시도 + 시군구 (+ 첫 번째 읍면동) */}
+                <h3
+                  className="font-bold text-lg mb-3 cursor-pointer hover:text-orange-500"
+                  onClick={() =>
+                    handleLocationSelect({
+                      name: region,
+                      parentName: "",
+                      level: "sigungu",
+                    })
+                  }
+                >
+                  {region} {dongs.length > 0 && dongs[0]}
+                </h3>
+
+                {/* 나머지 읍면동 목록 */}
+                {dongs.length > 0 && (
+                  <div className="text-gray-400 text-sm leading-relaxed">
+                    {dongs.map((dong, idx) => (
+                      <span
+                        key={idx}
+                        className="cursor-pointer hover:text-orange-500"
+                        onClick={() =>
+                          handleLocationSelect({
+                            name: dong,
+                            parentName: region,
+                            level: "eupmyeondong",
+                          })
+                        }
+                      >
+                        {dong}
+                        {idx < dongs.length - 1 ? ", " : ""}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ));
+          })()}
         </div>
       )}
 
       {/* 검색 결과 없음 */}
       {!isLoading && searchTerm && searchResults.length === 0 && (
-        <div>
-          <p>검색 결과가 없습니다</p>
+        <div className="text-center mt-10">
+          <p className="text-gray-500">검색 결과가 없습니다</p>
+          <p className="text-sm text-gray-400 mt-2">
+            다른 검색어로 시도해보세요
+          </p>
         </div>
       )}
 
