@@ -119,7 +119,6 @@ export const LikeList = () => {
                   className="absolute top-0 right-0 text-orange-400 text-2xl"
                   onClick={(event) => {
                     event.stopPropagation();
-                    console.log("찜하기 취소", item.id);
                   }}
                 />
               </div>

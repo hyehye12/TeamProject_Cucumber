@@ -21,7 +21,7 @@ export const MyCucumberPage = () => {
   const currentUser = mockUsers[0];
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 h-screen flex-1 overflow-y-auto">
       <Header className="m-4 bg-gray-100">
         <Header.Left>
           <Header.Title className="p-4 text-2xl">나의 오이</Header.Title>
