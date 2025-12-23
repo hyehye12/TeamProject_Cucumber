@@ -1,16 +1,17 @@
-import { Header } from "@/components";
-import { Button } from "@/components";
-import { Icon } from "@/components";
+import { Header, Button, Icon, Spinner } from "@/components";
 import { useLocationStore } from "@/stores/useLocationStore";
 import { useAuthStore } from "@/stores/useAuthStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Spinner } from "@/components";
+import BottomSheet from "@/components/common/BottomSheet/BottomSheet";
 
 const LocationPage = () => {
   const navigate = useNavigate();
 
-  // Zustand 스토어에서 상태와 액션 가져오기
+  // BottomSheet 상태 관리
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState("");
+
   const {
     searchTerm,
     searchResults,
@@ -29,20 +30,24 @@ const LocationPage = () => {
     loadInitialData();
   }, [loadInitialData]);
 
-  // 위치 선택 핸들러
+  // 위치 선택 핸들러 수정
   const handleLocationSelect = (loc: any) => {
-    // 전체 주소 생성
     const fullAddress = loc.parentName
       ? `${loc.parentName} ${loc.name}`
       : loc.name;
 
-    // AuthStore에 위치 저장
-    setLocation(fullAddress);
+    setSelectedLocation(fullAddress);
+    setIsBottomSheetOpen(true); // BottomSheet 열기
+  };
 
-    console.log("선택된 위치:", fullAddress);
+  // 본인인증 진행
+  const handleVerification = () => {
+    setLocation(selectedLocation);
+    setIsBottomSheetOpen(false);
 
-    // 이전 페이지로 이동
-    navigate(-1);
+    // 본인인증 페이지로 이동 (또는 이전 페이지로)
+    // navigate('/verification');
+    navigate(-1); // 임시로 이전 페이지로
   };
 
   return (
@@ -88,21 +93,17 @@ const LocationPage = () => {
       {!isLoading && searchTerm && searchResults.length > 0 && (
         <div className="w-[90%] mx-auto mt-5 overflow-y-auto">
           <h3 className="font-bold mb-3 text-lg">'{searchTerm}' 검색 결과</h3>
-          <br></br>
+          <br />
 
           {(() => {
-            // 시/군/구별로 그룹핑
             const grouped = searchResults.reduce((acc, loc) => {
-              // 읍면동 레벨인 경우
               if (loc.level === "eupmyeondong" && loc.parentName) {
-                const key = loc.parentName; // "서울특별시 강동구"
+                const key = loc.parentName;
                 if (!acc[key]) {
                   acc[key] = [];
                 }
                 acc[key].push(loc.name);
-              }
-              // 시군구나 시도 레벨인 경우
-              else {
+              } else {
                 const key = loc.parentName
                   ? `${loc.parentName} ${loc.name}`
                   : loc.name;
@@ -115,7 +116,6 @@ const LocationPage = () => {
 
             return Object.entries(grouped).map(([region, dongs], i) => (
               <div key={i} className="mb-8">
-                {/* 제목: 시도 + 시군구 (+ 첫 번째 읍면동) */}
                 <h3
                   className="font-bold text-lg mb-3 cursor-pointer hover:text-orange-500"
                   onClick={() =>
@@ -129,7 +129,6 @@ const LocationPage = () => {
                   {region} {dongs.length > 0 && dongs[0]}
                 </h3>
 
-                {/* 나머지 읍면동 목록 */}
                 {dongs.length > 0 && (
                   <div className="text-gray-400 text-sm leading-relaxed">
                     {dongs.map((dong, idx) => (
@@ -186,12 +185,9 @@ const LocationPage = () => {
         <div className="w-[90%] mx-auto mt-5 overflow-y-auto">
           {randomGroups.map((group, i) => (
             <div key={i} className="mb-8">
-              {/* 제목: 시도 + 시군구 + 첫 번째 읍면동 */}
               <h3 className="font-bold text-lg mb-3">
                 {group.sido} {group.sigungu} {group.dongs[0]}
               </h3>
-
-              {/* 나머지 읍면동 목록 */}
               <p className="text-gray-400 text-sm leading-relaxed">
                 {group.dongs.join(", ")}
               </p>
@@ -199,6 +195,41 @@ const LocationPage = () => {
           ))}
         </div>
       )}
+
+      {/* BottomSheet - 본인인증 안내 */}
+      <BottomSheet
+        open={isBottomSheetOpen}
+        onClose={() => setIsBottomSheetOpen(false)}
+        timeout={300}
+      >
+        <div className="flex flex-col pt-10 pb-4 max-h-[60vh] overflow-y-auto">
+          {/* 제목 */}
+          <h2 className="text-2xl font-bold mb-3">
+            안전한 당근 이용을 위해
+            <br />
+            본인인증을 진행할게요
+          </h2>
+
+          {/* 설명 */}
+          <p className="text-gray-600 mb-6">
+            건강한 당근 문화를 위해 본인인증이 필요해요
+          </p>
+
+          {/* 일러스트 이미지 */}
+          <div className="w-[60%] mx-auto">
+            {/* 실제 이미지로 교체하세요 */}
+            <div className="aspect-square bg-gradient-to-br from-blue-100 to-green-100 rounded-2xl flex items-center justify-center"></div>
+          </div>
+
+          {/* 인증 버튼 */}
+          <Button
+            className="text-xl w-[90%] mx-auto mt-5"
+            onClick={() => navigate("/login")}
+          >
+            30초만에 인증하기
+          </Button>
+        </div>
+      </BottomSheet>
     </div>
   );
 };
