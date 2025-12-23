@@ -12,3 +12,17 @@ export interface Product {
   timeAgo?: string;
   status?: "on-sale" | "reserved" | "sold-out";
 }
+
+export interface ReviewTag {
+  text: string;
+  count: number;
+}
+
+export interface Review {
+  id: number;
+  reviewerName: string;
+  role: string;
+  location: string;
+  timeAgo: string;
+  content: string;
+}

@@ -1,6 +1,6 @@
 import { type SectionItem } from "../components";
 import { 오리 } from "../assets";
-import type { Product } from "../types/mypage";
+import type { Product, ReviewTag, Review } from "../types/mypage";
 
 export const productMockItems = [
   {
@@ -49,33 +49,33 @@ export const mockUsers = [
 ];
 
 export const dealMenuItems: SectionItem[] = [
-  { icon: "receipt", label: "판매내역" },
-  { icon: "shoppingBasket", label: "구매내역" },
+  { icon: "receipt", label: "판매내역", to: "/mypage/sales-history" },
+  { icon: "shoppingBasket", label: "구매내역", to: "/mypage/purchase-history" },
   { icon: "gemini", label: "내 물건 가격 찾기" },
-  { icon: "bookMarked", label: "중고거래 가계부" },
+  { icon: "bookMarked", label: "중고거래 가계부", to: "/mypage/account-book" },
 ];
 
 export const interestMenuItems: SectionItem[] = [
-  { icon: "likeOutline", label: "관심목록", to: "likelist" },
-  { icon: "priceTag", label: "키워드 알림 설정" },
+  { icon: "likeOutline", label: "관심목록", to: "/mypage/likelist" },
+  { icon: "priceTag", label: "키워드 알림 설정", to: "/mypage/keyword-notification-settings" },
 ];
 
 export const activityMenuItems: SectionItem[] = [
-  { icon: "notebook", label: "내 동네생활 글" },
+  { icon: "notebook", label: "내 동네생활 글", to: "/mypage/neighborhood-activity" },
 ];
 
 export const settingMenuItems: SectionItem[] = [
   { icon: "location", label: "내 동네 설정" },
   { icon: "target", label: "동네 인증하기" },
-  { icon: "setting", label: "웹 설정" },
+  { icon: "setting", label: "웹 설정", to: "/mypage/settings" },
 ];
 
 export const supportMenuItems: SectionItem[] = [
   { icon: "megaphone", label: "공지사항" },
-  { icon: "headset", label: "고객센터" },
-  { icon: "paperPlane", label: "의견 남기기" },
+  { icon: "headset", label: "고객센터", to: "/mypage/customer-center" },
+  { icon: "paperPlane", label: "의견 남기기", to: "/mypage/feedback" },
   { icon: "carrot", label: "오이 더 알아보기" },
-  { icon: "infoCircle", label: "약관 및 정책" },
+  { icon: "infoCircle", label: "약관 및 정책", to: "/mypage/terms-and-policies" },
 ];
 
 // 찜한 상품 목데이터
@@ -237,5 +237,42 @@ export const allProducts: Product[] = [
     location: "서초동",
     timeAgo: "6시간 전",
     status: "on-sale",
+  },
+];
+
+// 후기 태그 목데이터
+export const reviewTags: ReviewTag[] = [
+  { text: "시간 약속을 잘 지켜요", count: 12 },
+  { text: "응답이 빨라요", count: 8 },
+  { text: "친절하고 매너가 좋아요", count: 15 },
+  { text: "상품 상태가 설명한 것과 같아요", count: 10 },
+  { text: "나눔을 해주셨어요", count: 5 },
+];
+
+// 최신 후기 목데이터
+export const recentReviews: Review[] = [
+  {
+    id: 1,
+    reviewerName: "버즈",
+    role: "판매자",
+    location: "역삼동",
+    timeAgo: "2일 전",
+    content: "정말 친절하게 거래했어요! 다음에도 또 거래하고 싶어요.",
+  },
+  {
+    id: 2,
+    reviewerName: "제시",
+    role: "구매자",
+    location: "강남구",
+    timeAgo: "5일 전",
+    content: "상품 상태가 정말 좋았고, 시간 약속도 잘 지켜주셨어요.",
+  },
+  {
+    id: 3,
+    reviewerName: "우디",
+    role: "판매자",
+    location: "서초동",
+    timeAgo: "1주일 전",
+    content: "응답이 빠르고 매너가 좋으신 분이에요. 추천합니다!",
   },
 ];
