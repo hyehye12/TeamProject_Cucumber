@@ -46,7 +46,22 @@ import ReportsProfileImage from "../components/reports/mains/ReportsProfileImage
 import ReportsNickname from "../components/reports/mains/ReportsNickname";
 import ReportsPolitics from "../components/reports/mains/ReportsPolitics";
 import ReportsUnder14 from "../components/reports/mains/ReportsUnder14";
-import { LikeList } from "../components/mypage/main";
+import { 
+  LikeList, 
+  Profile, 
+  AccountBook, 
+  SalesHistory, 
+  PurchaseHistory, 
+  NeighborhoodActivity, 
+  CustomerCenter,
+  ReviewDetail,
+  KeywordNotificationSettings,
+  KeywordEdit,
+  Category,
+  Settings,
+  Feedback,
+  TermsAndPolicies,
+} from "../components/mypage/main";
 import WelcomePage from "../pages/WelcomePage";
 import LocationPage from "@/pages/LocationPage";
 import LoginPage from "@/pages/LoginPage";
@@ -69,7 +84,19 @@ export const AppRoutes = () => {
             </Route>
             <Route path="/mypage" element={<MyCucumberPage />} />
             <Route path="/mypage/likelist" element={<LikeList />} />
-
+            <Route path="/mypage/profile" element={<Profile />} />
+            <Route path="/mypage/account-book" element={<AccountBook />} />
+            <Route path="/mypage/sales-history" element={<SalesHistory />} />
+            <Route path="/mypage/purchase-history" element={<PurchaseHistory />} />
+            <Route path="/mypage/neighborhood-activity" element={<NeighborhoodActivity />} />
+            <Route path="/mypage/customer-center" element={<CustomerCenter />} />
+            <Route path="/mypage/review-detail" element={<ReviewDetail />} />
+            <Route path="/mypage/keyword-notification-settings" element={<KeywordNotificationSettings />} />
+            <Route path="/mypage/keyword-edit" element={<KeywordEdit />} />
+            <Route path="/mypage/settings" element={<Settings />} />
+            <Route path="/mypage/feedback" element={<Feedback />} />
+            <Route path="/mypage/terms-and-policies" element={<TermsAndPolicies />} />
+            <Route path="/category" element={<Category />} />
             {/* 시작화면 */}
             <Route path="/welcome" element={<WelcomePage />} />
             <Route path="/login" element={<LoginPage />} />

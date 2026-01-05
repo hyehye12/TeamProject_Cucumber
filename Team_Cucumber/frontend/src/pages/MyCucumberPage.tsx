@@ -10,9 +10,10 @@ import {
   settingMenuItems,
   supportMenuItems,
 } from "../data";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const MyCucumberPage = () => {
+  const navigate = useNavigate();
   const banner = useMemo(() => {
     const index = Math.floor(Math.random() * mockItems.length);
     return mockItems[index];
@@ -21,7 +22,7 @@ export const MyCucumberPage = () => {
   const currentUser = mockUsers[0];
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 h-screen flex-1 overflow-y-auto">
       <Header className="m-4 bg-gray-100">
         <Header.Left>
           <Header.Title className="p-4 text-2xl">나의 오이</Header.Title>
@@ -54,9 +55,9 @@ export const MyCucumberPage = () => {
         </ProductCard.Image>
       </ProductCard>
       <ProductCard
-        className="flex m-4 w-auto h-auto py-3 border-b bg-white border-gray-100 hover:shadow-md hover:bg-gray-200 p-4 rounded-xl "
+        className="flex m-4 w-auto h-auto py-3 border-b bg-white border-gray-100 hover:shadow-md hover:bg-gray-200 p-4 rounded-xl cursor-pointer"
         onClick={() => {
-          console.log("go detail");
+          navigate("/mypage/profile");
         }}
       >
         <div className="ml-5 flex flex-row">
@@ -80,12 +81,15 @@ export const MyCucumberPage = () => {
         <div className="flex flex-row">
           <ProductCard.Bold>서비스</ProductCard.Bold>
         </div>
-        <Button className="bg-white hover:bg-gray-200 text-black text-2xl">
+        <Button 
+          onClick={() => navigate("/category")}
+          className="bg-white hover:bg-gray-200 text-black text-2xl"
+        >
           🧺 중고거래
         </Button>
       </ProductCard>
       <ProductCard className="flex flex-row m-4 px-35 w-auto h-auto py-3 border-b bg-white border-gray-100 rounded-xl ">
-        <Link to="likelist">
+        <Link to="/mypage/likelist">
           <Button className="ml-5 bg-white hover:bg-gray-200 text-black text-xl flex flex-col items-center border-r-gray-100">
             <Icon name="likeOutline" />
             관심목록

@@ -28,6 +28,20 @@ import {
   LuTarget as target, // 타겟
   LuCirclePlus as circlePlus,
   LuCircleMinus as circleMinus,
+  LuLaptop as laptop, // 노트북
+  LuArmchair as armchair, // 의자
+  LuBaby as baby, // 아기
+  LuShirt as shirt, // 셔츠
+  LuShoppingBag as bag, // 가방
+  LuMicrowave as microwave, // 전자레인지
+  LuChefHat as chefHat, // 주방
+  LuTent as tent, // 텐트
+  LuGamepad2 as gamepad, // 게임패드
+  LuSparkles as sparkles, // 반짝이
+  LuScanLine as scanLine, // 스캔
+  LuWine as bottle, // 병
+  LuSoup as bowl, // 그릇
+  LuCircle as lipstick, // 립스틱 (임시로 circle 사용)
 } from "react-icons/lu";
 
 import {
@@ -45,6 +59,8 @@ import {
   IoCheckbox as checkBoxFill, // 체크 박스
   IoPricetagOutline as priceTag, // 가격표
   IoLocationOutline as location, // 위치
+  IoFlame as flame, // 불꽃
+  IoCubeOutline as box, // 박스
 } from "react-icons/io5";
 
 import {
@@ -72,6 +88,9 @@ import {
   RiFlag2Line as flagOutline, // 깃발
   RiFlag2Fill as flagFill, // 깃발
   RiGeminiLine as gemini, // 제미나이
+  RiPlantFill as plant, // 식물
+  RiBookOpenLine as book, // 도서
+  RiTicketLine as ticket, // 티켓
 } from "react-icons/ri";
 
 import {
@@ -87,6 +106,8 @@ import {
 
 import {
   MdHeadsetMic as headset, // 헤드셋
+  MdPets as pets, // 반려동물
+  MdChildCare as childCare, // 유아
 } from "react-icons/md";
 
 import {
@@ -147,4 +168,26 @@ export const icons = {
   circlePlus,
   questionCircle,
   circleMinus,
+  // 카테고리 아이콘
+  laptop,
+  armchair,
+  baby,
+  shirt,
+  bag,
+  microwave,
+  chefHat,
+  tent,
+  gamepad,
+  sparkles,
+  scanLine,
+  flame,
+  box,
+  plant,
+  lipstick,
+  book,
+  ticket,
+  bowl,
+  bottle,
+  pets,
+  childCare,
 };

@@ -23,11 +23,13 @@ export const MyPageMenuSection = ({ title, items }: SectionProps) => {
         const button = (
           <Button
             key={item.label}
-            className="bg-white hover:bg-gray-200 text-black text-xl flex flex-row items-center border-r-gray-100"
+            className="bg-white hover:bg-gray-200 text-black text-xl flex flex-row items-center justify-between w-full border-r-gray-100"
           >
-            <Icon name={item.icon} className="mr-3" />
-            {item.label}
-            <Icon name="right" className="ml-auto text-gray-400" />
+            <div className="flex items-center">
+              <Icon name={item.icon} className="mr-3" />
+              {item.label}
+            </div>
+            <Icon name="right" className="text-gray-400" />
           </Button>
         );
         if (item.to) {
